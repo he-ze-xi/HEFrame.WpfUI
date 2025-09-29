@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:Double x:Key="HEUIFontLargeSize">16</system:Double>
+    <system:Double x:Key="HEUINormalFontSize">13</system:Double>
+    <system:Double x:Key="HEUIFontSize">11</system:Double>
+    <system:Double x:Key="HEUIFontSmallSize">9</system:Double>
+
+</ResourceDictionary>

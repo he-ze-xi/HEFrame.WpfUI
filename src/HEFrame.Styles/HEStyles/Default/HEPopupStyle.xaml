@@ -1,0 +1,84 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:HEFrame.Styles.Controls">
+    <!--  PopupToggleButton  -->
+    <Style x:Key="PoputToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=controls:HEPopup}, Path=Foreground}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="IsChecked" Value="False" />
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="BackBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" CornerRadius="2">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0" Color="{Binding RelativeSource={RelativeSource AncestorType=controls:HEPopup}, Path=MouseOverColor}" />
+                        </Border.Background>
+                        <Path Width="5" Height="18" Margin="1" Data="{DynamicResource MorePath}" Fill="{TemplateBinding Foreground}" Stretch="Fill" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BackBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)" To="1" Duration="0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BackBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)" To="0" Duration="0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="HEPopupStyle" TargetType="{x:Type controls:HEPopup}">
+        <Setter Property="Background" Value="{DynamicResource DarkBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource DarkContrast}" />
+        <Setter Property="MouseOverColor" Value="{DynamicResource DarkMouseOverColor}" />
+        <Setter Property="Placement" Value="Bottom" />
+        <Setter Property="VerticalOffset" Value="2" />
+        <Setter Property="HorizontalOffset" Value="0" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:HEPopup}">
+                    <Grid>
+                        <ToggleButton x:Name="PART_PopupControl" Style="{DynamicResource PoputToggleButtonStyle}" />
+                        <Popup x:Name="PART_Popup" AllowsTransparency="True" HorizontalOffset="{TemplateBinding HorizontalOffset}" Placement="{TemplateBinding Placement}" PlacementTarget="{Binding ElementName=PopupControl}" VerticalOffset="{TemplateBinding VerticalOffset}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}">
+                                <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="ThemeType" Value="Dark">
+                <Setter Property="Background" Value="{DynamicResource DarkBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkContrast}" />
+                <Setter Property="MouseOverColor" Value="{DynamicResource DarkMouseOverColor}" />
+            </Trigger>
+            <Trigger Property="ThemeType" Value="Light">
+                <Setter Property="Background" Value="{DynamicResource LightBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightContrast}" />
+                <Setter Property="MouseOverColor" Value="{DynamicResource LightMouseOverColor}" />
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
+    <Style BasedOn="{StaticResource HEPopupStyle}" TargetType="{x:Type controls:HEPopup}" />
+</ResourceDictionary>

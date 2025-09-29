@@ -1,0 +1,164 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:HEFrame.Styles.Controls" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:Double x:Key="ComboBoxArrowWidth">6</sys:Double>
+    <sys:Double x:Key="ComboBoxArrowHeight">5</sys:Double>
+    <sys:Double x:Key="ComboBoxSelectedItemBorderWidth">4</sys:Double>
+    <sys:Double x:Key="ComboBoxSelectedItemBorderHeight">10</sys:Double>
+    <sys:Double x:Key="ComboBoxMinWidth">0</sys:Double>
+    <sys:Double x:Key="ComboBoxMinHeight">25</sys:Double>
+
+    <!--  ComboBoxToggleButton  -->
+    <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Border x:Name="BackBorder" Grid.ColumnSpan="2" Background="{Binding RelativeSource={RelativeSource AncestorType=controls:HEComboBox}, Path=Background}" BorderThickness="0" CornerRadius="3" />
+            <Path x:Name="Arrow" Grid.Column="1" Width="{DynamicResource ComboBoxArrowWidth}" Height="{DynamicResource ComboBoxArrowHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Data="{DynamicResource ArrowPath}" Fill="{Binding RelativeSource={RelativeSource AncestorType=controls:HEComboBox}, Path=ArrowBrush}" RenderTransformOrigin="0.5 0.5" Stretch="Fill" Stroke="{Binding RelativeSource={RelativeSource AncestorType=controls:HEComboBox}, Path=ArrowBrush}" StrokeThickness="1">
+                <Path.RenderTransform>
+                    <RotateTransform />
+                </Path.RenderTransform>
+            </Path>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="BackBorder" Property="Opacity" Value="0.7" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Arrow" Storyboard.TargetProperty="RenderTransform.Angle" From="0" To="180" Duration="0:0:0.167" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Arrow" Storyboard.TargetProperty="RenderTransform.Angle" To="0" Duration="0:0:0.167" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--  ComboBoxEditTextBox  -->
+    <ControlTemplate x:Key="ComboBoxEditTextBox" TargetType="{x:Type TextBox}">
+        <Border x:Name="PART_ContentHost" Background="{DynamicResource TransparentBackground}" Focusable="False" />
+    </ControlTemplate>
+    <!--  ComboBoxItem  -->
+    <Style x:Key="{x:Type ComboBoxItem}" TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:HEComboBox}}, Path=Foreground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <Grid>
+                        <Border x:Name="BackBorder" Margin="0,5" Padding="2" Background="{DynamicResource TransparentBackground}" SnapsToDevicePixels="true">
+                            <ContentPresenter Margin="5,0" />
+                        </Border>
+                        <Border x:Name="SelectedBorder" Width="{DynamicResource ComboBoxSelectedItemBorderWidth}" Height="{DynamicResource ComboBoxSelectedItemBorderHeight}" Padding="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{DynamicResource PrimaryBackground}" CornerRadius="2" IsHitTestVisible="False" Opacity="0" SnapsToDevicePixels="true" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="BackBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource AncestorType=controls:HEComboBox}, Path=MouseOverItemBackground}" />
+                            <Setter TargetName="BackBorder" Property="CornerRadius" Value="3" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="SelectedBorder" Property="Opacity" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--  ComboBox  -->
+    <Style x:Key="HEComboBoxStyle" TargetType="{x:Type controls:HEComboBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="MinHeight" Value="{DynamicResource ComboBoxMinHeight}" />
+        <Setter Property="FontSize" Value="{DynamicResource HEUIFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+        <Setter Property="MouseOverItemBackground" Value="{DynamicResource PrimaryBackground}" />
+        <Setter Property="Background" Value="{DynamicResource DarkBackground}" />
+        <Setter Property="ArrowBrush" Value="{DynamicResource DarkContrast}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:HEComboBox}">
+                    <Grid>
+                        <ToggleButton x:Name="ToggleButton" Grid.Column="2" ClickMode="Press" Focusable="false" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Template="{StaticResource ComboBoxToggleButton}" />
+                        <ContentPresenter x:Name="ContentSite" Margin="2,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" IsHitTestVisible="False" />
+                        <TextBox x:Name="PART_EditableTextBox" Margin="2,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" CaretBrush="{TemplateBinding ArrowBrush}" Cursor="IBeam" Focusable="True" Foreground="{TemplateBinding Foreground}" IsReadOnly="{TemplateBinding IsReadOnly}" Style="{x:Null}" Template="{StaticResource ComboBoxEditTextBox}" Visibility="Hidden" />
+                        <Popup x:Name="Popup" AllowsTransparency="True" Focusable="False" IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" PopupAnimation="Slide">
+                            <Grid x:Name="DropDown" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}" SnapsToDevicePixels="True">
+                                <Border x:Name="DropDownBorder" Background="{Binding RelativeSource={RelativeSource AncestorType=controls:HEComboBox}, Path=Background}" BorderThickness="1" />
+                                <controls:HEScrollViewer Margin="3,3" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" SnapsToDevicePixels="True" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" TextElement.FontSize="{TemplateBinding FontSize}" />
+                                </controls:HEScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="true">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                        </Trigger>
+                        <Trigger SourceName="Popup" Property="AllowsTransparency" Value="true">
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0" />
+                        </Trigger>
+                        <Trigger Property="IsEditable" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_EditableTextBox" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentSite" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_EditableTextBox" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentSite" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="ThemeType" Value="Dark">
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="Background" Value="{DynamicResource DarkBackground}" />
+                <Setter Property="ArrowBrush" Value="{DynamicResource DarkContrast}" />
+            </Trigger>
+            <Trigger Property="ThemeType" Value="Light">
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="Background" Value="{DynamicResource LightBackground}" />
+                <Setter Property="ArrowBrush" Value="{DynamicResource LightContrast}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.56" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style BasedOn="{StaticResource HEComboBoxStyle}" TargetType="{x:Type controls:HEComboBox}" />
+</ResourceDictionary>

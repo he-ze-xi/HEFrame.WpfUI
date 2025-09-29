@@ -1,0 +1,473 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:HEFrame.Styles.Controls" xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:Double x:Key="ButtonWidth">100</system:Double>
+    <system:Double x:Key="ButtonHeight">30</system:Double>
+    <system:Double x:Key="LoadingPathWidth">15</system:Double>
+    <system:Double x:Key="LoadingPathHeight">15</system:Double>
+
+    <Style x:Key="HEButtonStyle" TargetType="local:HEButton">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
+        <Setter Property="Width" Value="{DynamicResource ButtonWidth}" />
+        <Setter Property="Height" Value="{DynamicResource ButtonHeight}" />
+        <Setter Property="FontSize" Value="{DynamicResource HEUIFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+        <Setter Property="Background" Value="{DynamicResource DarkBackground}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HEButton">
+                    <Border x:Name="PART_BackBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Path x:Name="PART_LoadingPath" Width="{DynamicResource LoadingPathWidth}" Height="{DynamicResource LoadingPathHeight}" Margin="5,0" HorizontalAlignment="Center" VerticalAlignment="Center" Data="{DynamicResource PointLoadingPath}" Fill="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}" RenderTransformOrigin="0.5 0.5" Stretch="Fill" Stroke="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}" StrokeThickness="1" Visibility="Collapsed">
+                                <Path.RenderTransform>
+                                    <RotateTransform />
+                                </Path.RenderTransform>
+                            </Path>
+                            <ContentControl x:Name="PART_LoadingContent" Grid.Column="1" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding LoadingContent}" Visibility="Collapsed" />
+                            <ContentPresenter x:Name="PART_Content" Grid.Column="1" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Visible" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_BackBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=HoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PART_BackBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PressedBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsLoading" Value="True">
+                            <Setter Property="IsEnabled" Value="False" />
+                            <Setter TargetName="PART_LoadingPath" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_LoadingContent" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_Content" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_Content" Property="IsHitTestVisible" Value="False" />
+                            <Setter Property="Opacity" Value="0.6" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation RepeatBehavior="Forever" Storyboard.TargetName="PART_LoadingPath" Storyboard.TargetProperty="RenderTransform.Angle" From="0" To="360" Duration="0:0:1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_LoadingPath" Storyboard.TargetProperty="RenderTransform.Angle" To="0" Duration="0:0:0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="ButtonType" Value="Dark">
+                <Setter Property="Background" Value="{DynamicResource DarkBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DarkBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource DarkMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource DarkPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Light">
+                <Setter Property="Background" Value="{DynamicResource LightBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource LightBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource LightMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource LightPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Primary">
+                <Setter Property="Background" Value="{DynamicResource PrimaryBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource PrimaryMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource PrimaryPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Success">
+                <Setter Property="Background" Value="{DynamicResource SuccessBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource SuccessBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource SuccessMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource SuccessPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Caution">
+                <Setter Property="Background" Value="{DynamicResource CautionBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource CautionBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource CautionMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource CautionPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Dranger">
+                <Setter Property="Background" Value="{DynamicResource DrangerBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DrangerBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource DrangerMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource DrangerPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Custom">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DarkBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource TransparentBackground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.4" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style BasedOn="{StaticResource HEButtonStyle}" TargetType="local:HEButton" />
+
+    <Style x:Key="HEMinButtonStyle" TargetType="local:HEButton">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="FontSize" Value="{DynamicResource HEUIFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+        <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="ButtonType" Value="Dark" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HEButton">
+                    <Border x:Name="PART_BackBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid>
+                            <Path Width="12" Height="1" HorizontalAlignment="Center" VerticalAlignment="Center" Data="{DynamicResource MaxPath}" Fill="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}" Opacity="1" Stretch="Fill" Stroke="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}" StrokeThickness="1" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_BackBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=HoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PART_BackBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PressedBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="ButtonType" Value="Dark">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource DarkMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource DarkPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Light">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource LightMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource LightPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Primary">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource PrimaryMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource PrimaryPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Success">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource SuccessMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource SuccessPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Caution">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource CautionMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource CautionPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Dranger">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource DrangerMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource DrangerPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Custom">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DarkBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource TransparentBackground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.4" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="HENormalButtonStyle" TargetType="local:HEButton">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="FontSize" Value="{DynamicResource HEUIFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+        <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="ButtonType" Value="Dark" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HEButton">
+                    <Border x:Name="PART_BackBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid>
+                            <Path Width="12" Height="12" HorizontalAlignment="Center" VerticalAlignment="Center" Data="{DynamicResource NormalPath}" Fill="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}" Opacity="0.75" Stretch="Fill" Stroke="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}" StrokeThickness="1" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_BackBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=HoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PART_BackBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PressedBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="ButtonType" Value="Dark">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource DarkMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource DarkPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Light">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource LightMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource LightPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Primary">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource PrimaryMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource PrimaryPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Success">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource SuccessMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource SuccessPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Caution">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource CautionMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource CautionPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Dranger">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource DrangerMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource DrangerPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Custom">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource TransparentBackground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.4" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="HEMaxButtonStyle" TargetType="local:HEButton">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="FontSize" Value="{DynamicResource HEUIFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+        <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="ButtonType" Value="Dark" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HEButton">
+                    <Border x:Name="PART_BackBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid>
+                            <Path Width="12" Height="12" HorizontalAlignment="Center" VerticalAlignment="Center" Data="{DynamicResource MaxPath}" Fill="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}" Opacity="0.75" Stretch="Fill" Stroke="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}" StrokeThickness="1" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_BackBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=HoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PART_BackBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PressedBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="ButtonType" Value="Dark">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource DarkMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource DarkPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Light">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource LightMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource LightPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Primary">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource PrimaryMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource PrimaryPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Success">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource SuccessMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource SuccessPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Caution">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource CautionMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource CautionPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Dranger">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource DrangerMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource DrangerPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Custom">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource TransparentBackground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.4" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="HECloseButtonStyle" TargetType="local:HEButton">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="FontSize" Value="{DynamicResource HEUIFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+        <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="ButtonType" Value="Dark" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HEButton">
+                    <Border x:Name="PART_BackBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid>
+                            <Path Width="12" Height="12" HorizontalAlignment="Center" VerticalAlignment="Center" Data="{DynamicResource ClosePath}" Fill="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}" Opacity="0.75" Stretch="Fill" Stroke="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}" StrokeThickness="1" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_BackBorder" Property="Background" Value="{DynamicResource DrangerMouseHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PART_BackBorder" Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PressedBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="ButtonType" Value="Dark">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource DarkMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource DarkPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Light">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource LightMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource LightPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Primary">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource PrimaryMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource PrimaryPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Success">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource SuccessMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource SuccessPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Caution">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource CautionMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource CautionPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Dranger">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource DrangerMouseHover}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource DrangerPressed}" />
+            </Trigger>
+            <Trigger Property="ButtonType" Value="Custom">
+                <Setter Property="Background" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="HoverBackground" Value="{DynamicResource TransparentBackground}" />
+                <Setter Property="PressedBackground" Value="{DynamicResource TransparentBackground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.4" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

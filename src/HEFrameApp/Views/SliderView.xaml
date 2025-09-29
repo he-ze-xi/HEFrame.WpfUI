@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="HEFrameApp.Views.SliderView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:HEFrameApp.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ui="clr-namespace:HEFrame.Styles.Controls;assembly=HEFrame.Styles" d:DesignHeight="450" d:DesignWidth="800" mc:Ignorable="d">
+    <ui:HEScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="默认滑块" />
+            <ui:HESlider Grid.Row="1" Margin="15,10" Value="5" />
+            <TextBlock Grid.Row="2" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="不同颜色滑块" />
+            <ui:HESlider Grid.Row="3" Margin="15,10" ThumbBrush="{DynamicResource SuccessBackground}" Value="3" />
+            <ui:HESlider Grid.Row="4" Margin="15,10" ThumbBrush="{DynamicResource WarmBrush}" Value="4" />
+            <ui:HESlider Grid.Row="5" Margin="15,10" ThumbBrush="{DynamicResource DrangerBrush}" Value="5" />
+            <TextBlock Grid.Row="6" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="竖直滑块" />
+            <StackPanel Grid.Row="7" Margin="15,10" Orientation="Horizontal">
+                <ui:HESlider Margin="15,10" Orientation="Vertical" ThumbBrush="{DynamicResource SuccessBackground}" Value="3" />
+                <ui:HESlider Margin="15,10" Orientation="Vertical" ThumbBrush="{DynamicResource WarmBrush}" Value="4" />
+                <ui:HESlider Margin="15,10" Orientation="Vertical" ThumbBrush="{DynamicResource DrangerBrush}" Value="5" />
+            </StackPanel>
+            <TextBlock Grid.Row="8" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="滑块动画" />
+            <ui:HESlider x:Name="slider" Grid.Row="9" Margin="15,10" Value="0" />
+            <ui:HEButton Grid.Row="10" Margin="15,10" HorizontalAlignment="Left" Content="动画启动">
+                <ui:HEButton.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="slider" Storyboard.TargetProperty="Value" From="0" To="10" Duration="0:0:3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ui:HEButton.Triggers>
+            </ui:HEButton>
+            <TextBlock Grid.Row="11" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="刻度滑块" />
+            <ui:HESlider Grid.Row="12" Margin="15,10" IsSnapToTickEnabled="True" TickPlacement="Both" Value="0" />
+            <ui:HESlider Grid.Row="13" Margin="15,10" IsSnapToTickEnabled="False" TickPlacement="BottomRight" Value="0" />
+        </Grid>
+    </ui:HEScrollViewer>
+
+</UserControl>

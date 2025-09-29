@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="HEFrameApp.Views.MessageCardView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:common="clr-namespace:HEFrameApp.Common" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:HEFrameApp.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:messageService="clr-namespace:HEFrame.Styles.Services;assembly=HEFrame.Styles" xmlns:ui="clr-namespace:HEFrame.Styles.Controls;assembly=HEFrame.Styles" d:DesignHeight="450" d:DesignWidth="800" mc:Ignorable="d">
+    <ui:HEScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ui:HEMessageCardHost Grid.RowSpan="7" messageService:HEMessageService.Token="{x:Static common:SysStringsManager.PartMessageFromTopToken}" ShowDirection="FromTop" />
+            <ui:HEMessageCardHost Grid.RowSpan="7" messageService:HEMessageService.Token="{x:Static common:SysStringsManager.PartMessageFromBottomToken}" ShowDirection="FromBottom" />
+            <TextBlock Grid.Row="0" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="全局消息提示" />
+            <WrapPanel Grid.Row="1" Margin="15,10">
+                <ui:HEButton ButtonType="Dark" Command="{Binding ShowGlobalMessageCommand}" CommandParameter="DefaultDark" Content="默认消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Light" Command="{Binding ShowGlobalMessageCommand}" CommandParameter="DefaultLight" Content="默认消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Primary" Command="{Binding ShowGlobalMessageCommand}" CommandParameter="Info" Content="提示消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Success" Command="{Binding ShowGlobalMessageCommand}" CommandParameter="Success" Content="成功消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Caution" Command="{Binding ShowGlobalMessageCommand}" CommandParameter="Warn" Content="警告消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Dranger" Command="{Binding ShowGlobalMessageCommand}" CommandParameter="Error" Content="错误消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Primary" Command="{Binding ShowGlobalMessageCommand}" CommandParameter="Custom" Content="自定义消息" />
+            </WrapPanel>
+            <TextBlock Grid.Row="2" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="局部消息提示 --从上往下弹出" />
+            <WrapPanel Grid.Row="3" Margin="15,10">
+                <ui:HEButton ButtonType="Dark" Command="{Binding ShowPartMessageFromTopCommand}" CommandParameter="DefaultDark" Content="默认消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Light" Command="{Binding ShowPartMessageFromTopCommand}" CommandParameter="DefaultLight" Content="默认消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Primary" Command="{Binding ShowPartMessageFromTopCommand}" CommandParameter="Info" Content="提示消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Success" Command="{Binding ShowPartMessageFromTopCommand}" CommandParameter="Success" Content="成功消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Caution" Command="{Binding ShowPartMessageFromTopCommand}" CommandParameter="Warn" Content="警告消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Dranger" Command="{Binding ShowPartMessageFromTopCommand}" CommandParameter="Error" Content="错误消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Primary" Command="{Binding ShowPartMessageFromTopCommand}" CommandParameter="Custom" Content="自定义消息" />
+            </WrapPanel>
+            <TextBlock Grid.Row="4" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="局部消息提示 --从下往上弹出" />
+            <WrapPanel Grid.Row="5" Margin="15,10">
+                <ui:HEButton ButtonType="Dark" Command="{Binding ShowPartMessageFromBottomCommand}" CommandParameter="DefaultDark" Content="默认消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Light" Command="{Binding ShowPartMessageFromBottomCommand}" CommandParameter="DefaultLight" Content="默认消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Primary" Command="{Binding ShowPartMessageFromBottomCommand}" CommandParameter="Info" Content="提示消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Success" Command="{Binding ShowPartMessageFromBottomCommand}" CommandParameter="Success" Content="成功消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Caution" Command="{Binding ShowPartMessageFromBottomCommand}" CommandParameter="Warn" Content="警告消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Dranger" Command="{Binding ShowPartMessageFromBottomCommand}" CommandParameter="Error" Content="错误消息" />
+                <ui:HEButton Margin="5,0" ButtonType="Primary" Command="{Binding ShowPartMessageFromBottomCommand}" CommandParameter="Custom" Content="自定义消息" />
+            </WrapPanel>
+        </Grid>
+    </ui:HEScrollViewer>
+
+</UserControl>

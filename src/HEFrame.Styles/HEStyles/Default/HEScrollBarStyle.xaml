@@ -1,0 +1,301 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:HEFrame.Styles.Controls" xmlns:sys="http://schemas.microsoft.com/netfx/2009/xaml/presentation" xmlns:sysyem="clr-namespace:System;assembly=mscorlib">
+
+    <sysyem:Double x:Key="VerticalScrollBarThickness">10</sysyem:Double>
+    <sysyem:Double x:Key="HorizibtalScrollBarThickness">10</sysyem:Double>
+
+    <sysyem:Double x:Key="RepeatButtonWidth">10</sysyem:Double>
+    <sysyem:Double x:Key="RepeatButtonHeight">10</sysyem:Double>
+    <sys:CornerRadius x:Key="RepeatButtonCorner">5</sys:CornerRadius>
+    <sysyem:Double x:Key="RepeatButtonPathWidth">4</sysyem:Double>
+    <sysyem:Double x:Key="RepeatButtonPathHeight">4</sysyem:Double>
+
+    <!--  Line RepeatButton Style  -->
+    <Style x:Key="RepeatButtonStyle" TargetType="RepeatButton">
+        <Setter Property="Width" Value="{StaticResource RepeatButtonWidth}" />
+        <Setter Property="Height" Value="{StaticResource RepeatButtonHeight}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource LightBackground}" />
+    </Style>
+    <Style x:Key="VerticalLineUpRepeatButtonStyle" BasedOn="{StaticResource RepeatButtonStyle}" TargetType="RepeatButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Margin="{TemplateBinding Margin}" CornerRadius="{DynamicResource RepeatButtonCorner}" Opacity="1">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0" Color="#606060" />
+                        </Border.Background>
+                        <Path Width="{DynamicResource RepeatButtonPathWidth}" Height="{DynamicResource RepeatButtonPathHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Data="{DynamicResource LineUpPath}" Fill="{TemplateBinding Foreground}" Stretch="Fill" Stroke="{TemplateBinding Foreground}" StrokeThickness="1" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)" From="0" To="1" Duration="0:0:0.167" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)" From="1" To="0" Duration="0:0:0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="VerticalLineDownRepeatButtonStyle" BasedOn="{StaticResource RepeatButtonStyle}" TargetType="RepeatButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Margin="{TemplateBinding Margin}" CornerRadius="{DynamicResource RepeatButtonCorner}" Opacity="1">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0" Color="#606060" />
+                        </Border.Background>
+                        <Path Width="{DynamicResource RepeatButtonPathWidth}" Height="{DynamicResource RepeatButtonPathHeight}" Data="{DynamicResource LineDownPath}" Fill="{TemplateBinding Foreground}" Stretch="Fill" Stroke="{TemplateBinding Foreground}" StrokeThickness="1" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)" From="0" To="1" Duration="0:0:0.167" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)" From="1" To="0" Duration="0:0:0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="HorizontalLineUpRepeatButtonStyle" BasedOn="{StaticResource RepeatButtonStyle}" TargetType="RepeatButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Margin="{TemplateBinding Margin}" CornerRadius="{DynamicResource RepeatButtonCorner}" Opacity="1">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0" Color="#606060" />
+                        </Border.Background>
+                        <Path Width="{DynamicResource RepeatButtonPathWidth}" Height="{DynamicResource RepeatButtonPathHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Data="{DynamicResource HorizontalLineUpPath}" Fill="{TemplateBinding Foreground}" Stretch="Fill" Stroke="{TemplateBinding Foreground}" StrokeThickness="1" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)" From="0" To="1" Duration="0:0:0.167" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)" From="1" To="0" Duration="0:0:0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="HorizontalLineDownRepeatButtonStyle" BasedOn="{StaticResource RepeatButtonStyle}" TargetType="RepeatButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Margin="{TemplateBinding Margin}" CornerRadius="{DynamicResource RepeatButtonCorner}" Opacity="1">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0" Color="#606060" />
+                        </Border.Background>
+                        <Path Width="{DynamicResource RepeatButtonPathWidth}" Height="{DynamicResource RepeatButtonPathHeight}" Data="{DynamicResource GorizontalLineDownPath}" Fill="{TemplateBinding Foreground}" Stretch="Fill" Stroke="{TemplateBinding Foreground}" StrokeThickness="1" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)" From="0" To="1" Duration="0:0:0.167" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)" From="1" To="0" Duration="0:0:0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--  Page RepeatButton Style  -->
+    <Style x:Key="PageRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid>
+                        <!--  滚动条颜色  -->
+                        <Border Background="{DynamicResource DefaultFillColor}" CornerRadius="3" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="VerticalScrollBarTemplate" TargetType="{x:Type controls:HEScrollBar}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <RepeatButton x:Name="PART_LineUpRepeatButton" Grid.Row="0" Command="ScrollBar.LineUpCommand" Opacity="0" Style="{StaticResource VerticalLineUpRepeatButtonStyle}" />
+            <Track x:Name="PART_Track" Grid.Row="1" IsDirectionReversed="True" Opacity="0">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageUpCommand" Style="{StaticResource PageRepeatButtonStyle}" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb IsTabStop="False" OverridesDefaultStyle="True">
+                        <Thumb.Template>
+                            <ControlTemplate>
+                                <Border Width="6" Background="{DynamicResource DefaultFillColor}" CornerRadius="3" />
+                            </ControlTemplate>
+                        </Thumb.Template>
+                    </Thumb>
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageDownCommand" Style="{StaticResource PageRepeatButtonStyle}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+            <RepeatButton x:Name="PART_LineDownRepeatButton" Grid.Row="2" Command="ScrollBar.LineDownCommand" Opacity="0" Style="{StaticResource VerticalLineDownRepeatButtonStyle}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PART_LineUpRepeatButton" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.167" />
+                            <DoubleAnimation Storyboard.TargetName="PART_Track" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.167" />
+                            <DoubleAnimation Storyboard.TargetName="PART_LineDownRepeatButton" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.167" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PART_LineUpRepeatButton" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0" />
+                            <DoubleAnimation Storyboard.TargetName="PART_Track" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0" />
+                            <DoubleAnimation Storyboard.TargetName="PART_LineDownRepeatButton" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="HorizontalScrollBarTemplate" TargetType="{x:Type controls:HEScrollBar}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <RepeatButton x:Name="PART_LineLeftRepeatButton" Grid.Column="0" Command="ScrollBar.LineLeftCommand" Opacity="1" Style="{StaticResource HorizontalLineUpRepeatButtonStyle}" />
+            <Track x:Name="PART_Track" Grid.Column="1" Height="{StaticResource HorizibtalScrollBarThickness}" IsDirectionReversed="False" Opacity="1">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageLeftCommand" Style="{StaticResource PageRepeatButtonStyle}" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb IsTabStop="False" OverridesDefaultStyle="True">
+                        <Thumb.Template>
+                            <ControlTemplate>
+                                <Border Height="6" Background="{DynamicResource DefaultFillColor}" CornerRadius="3" />
+                            </ControlTemplate>
+                        </Thumb.Template>
+                    </Thumb>
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageRightCommand" Style="{StaticResource PageRepeatButtonStyle}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+            <RepeatButton x:Name="PART_LineRightRepeatButton" Grid.Column="2" Command="ScrollBar.LineRightCommand" Opacity="1" Style="{StaticResource HorizontalLineDownRepeatButtonStyle}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PART_LineLeftRepeatButton" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.167" />
+                            <DoubleAnimation Storyboard.TargetName="PART_Track" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.167" />
+                            <DoubleAnimation Storyboard.TargetName="PART_LineRightRepeatButton" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.167" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PART_LineLeftRepeatButton" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0" />
+                            <DoubleAnimation Storyboard.TargetName="PART_Track" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0" />
+                            <DoubleAnimation Storyboard.TargetName="PART_LineRightRepeatButton" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="HEScrollBarStyle" TargetType="{x:Type controls:HEScrollBar}">
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Width" Value="{DynamicResource VerticalScrollBarThickness}" />
+                <Setter Property="MinWidth" Value="{DynamicResource VerticalScrollBarThickness}" />
+                <Setter Property="Height" Value="auto" />
+                <Setter Property="Margin" Value="0,0,2,0" />
+                <Setter Property="Template" Value="{DynamicResource VerticalScrollBarTemplate}" />
+            </Trigger>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Height" Value="{DynamicResource HorizibtalScrollBarThickness}" />
+                <Setter Property="MinHeight" Value="{DynamicResource HorizibtalScrollBarThickness}" />
+                <Setter Property="Width" Value="auto" />
+                <Setter Property="Margin" Value="0,0,0,2" />
+                <Setter Property="Template" Value="{DynamicResource HorizontalScrollBarTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style BasedOn="{StaticResource HEScrollBarStyle}" TargetType="{x:Type controls:HEScrollBar}" />
+</ResourceDictionary>

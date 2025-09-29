@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="HEFrameApp.Views.TabControlView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:HEFrameApp.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ui="clr-namespace:HEFrame.Styles.Controls;assembly=HEFrame.Styles" d:DesignHeight="450" d:DesignWidth="800" mc:Ignorable="d">
+    <ui:HEScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="默认选项卡" />
+            <ui:HETabControl Grid.Row="1" Height="200" Margin="15,10" ThemeType="Light">
+                <ui:HETabItem Header="选项卡一">
+                    <TextBlock Margin="10" Text="选项卡一内容" />
+                </ui:HETabItem>
+                <ui:HETabItem Header="选项卡二">
+                    <TextBlock Margin="10" Text="选项卡二内容" />
+                </ui:HETabItem>
+                <ui:HETabItem Header="选项卡三">
+                    <TextBlock Margin="10" Text="选项卡三内容" />
+                </ui:HETabItem>
+                <ui:HETabItem Header="选项卡四">
+                    <TextBlock Margin="10" Text="选项卡四内容" />
+                </ui:HETabItem>
+            </ui:HETabControl>
+            <TextBlock Grid.Row="2" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="允许删除的选项卡" />
+            <ui:HEButton Grid.Row="3" Margin="15,10" HorizontalAlignment="Left" Command="{Binding AddTabItemCommand}" Content="添加" />
+            <ui:HETabControl Grid.Row="4" Height="200" Margin="15,10" ItemContainerStyle="{DynamicResource HETabItemDesignStyle}" ItemsSource="{Binding TabItems}" SelectedIndex="0" ThemeType="Light" />
+
+        </Grid>
+    </ui:HEScrollViewer>
+
+</UserControl>

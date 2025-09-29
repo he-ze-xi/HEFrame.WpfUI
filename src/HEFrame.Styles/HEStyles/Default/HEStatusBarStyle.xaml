@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:HEFrame.Styles.Controls">
+    <Style x:Key="HEStatusBarStyle" TargetType="{x:Type controls:HEStatusBar}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Background" Value="{DynamicResource DarkBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DarkBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+        <Setter Property="SeparatorColor" Value="{DynamicResource DarkContrast}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:HEStatusBar}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" CornerRadius="0">
+                        <ItemsPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="ThemeType" Value="Dark">
+                <Setter Property="Background" Value="{DynamicResource DarkBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DarkBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+                <Setter Property="SeparatorColor" Value="{DynamicResource DarkContrast}" />
+            </Trigger>
+            <Trigger Property="ThemeType" Value="Light">
+                <Setter Property="Background" Value="{DynamicResource LightBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource LightBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+                <Setter Property="SeparatorColor" Value="{DynamicResource LightContrast}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--  Separator  -->
+    <Style x:Key="{x:Static StatusBar.SeparatorStyleKey}" TargetType="{x:Type Separator}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Separator}">
+                    <Rectangle Width="1" Margin="3" Fill="{Binding RelativeSource={RelativeSource AncestorType=controls:HEStatusBar}, Path=SeparatorColor}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--  StatusItem  -->
+    <Style x:Key="{x:Type StatusBarItem}" TargetType="{x:Type StatusBarItem}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type StatusBarItem}">
+                    <ContentPresenter Name="ContentSite" Margin="3" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style BasedOn="{StaticResource HEStatusBarStyle}" TargetType="{x:Type controls:HEStatusBar}" />
+</ResourceDictionary>

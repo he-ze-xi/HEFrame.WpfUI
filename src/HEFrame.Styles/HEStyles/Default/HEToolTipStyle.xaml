@@ -1,0 +1,91 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:HEFrame.Styles.Controls">
+    <Style x:Key="HEToolTipStyle" TargetType="{x:Type controls:HEToolTip}">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="HasDropShadow" Value="True" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{DynamicResource DarkBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DarkBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+        <Setter Property="FontSize" Value="{DynamicResource HEUIFontSize}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Style.Triggers>
+            <Trigger Property="ThemeType" Value="Dark">
+                <Setter Property="Background" Value="{DynamicResource DarkBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DarkBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightForeground}" />
+            </Trigger>
+            <Trigger Property="ThemeType" Value="Light">
+                <Setter Property="Background" Value="{DynamicResource LightBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource LightBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkForeground}" />
+            </Trigger>
+            <Trigger Property="ToolTipMode" Value="Top">
+                <Setter Property="Template" Value="{DynamicResource TopToolTipTemplate}" />
+                <Setter Property="Placement" Value="Top" />
+            </Trigger>
+            <Trigger Property="ToolTipMode" Value="Bottom">
+                <Setter Property="Template" Value="{DynamicResource BottomToolTipTemplate}" />
+                <Setter Property="Placement" Value="Bottom" />
+            </Trigger>
+            <Trigger Property="ToolTipMode" Value="Left">
+                <Setter Property="Template" Value="{DynamicResource LeftToolTipTemplate}" />
+                <Setter Property="Placement" Value="Left" />
+            </Trigger>
+            <Trigger Property="ToolTipMode" Value="Right">
+                <Setter Property="Template" Value="{DynamicResource RightToolTipTemplate}" />
+                <Setter Property="Placement" Value="Right" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style BasedOn="{StaticResource HEToolTipStyle}" TargetType="{x:Type controls:HEToolTip}" />
+
+    <ControlTemplate x:Key="TopToolTipTemplate" TargetType="{x:Type controls:HEToolTip}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Border x:Name="BackBorder" MinWidth="60" MinHeight="30" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+                <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+            <Path Grid.Row="1" Width="10" Height="10" Data="{DynamicResource TopDeltaPath}" Fill="{TemplateBinding Background}" Stretch="Fill" Stroke="{TemplateBinding BorderBrush}" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="BottomToolTipTemplate" TargetType="{x:Type controls:HEToolTip}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Border x:Name="BackBorder" Grid.Row="1" MinWidth="60" MinHeight="30" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+                <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+            <Path Grid.Row="0" Width="10" Height="10" Data="{DynamicResource BottomDeltaPath}" Fill="{TemplateBinding Background}" Stretch="Fill" Stroke="{TemplateBinding BorderBrush}" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="LeftToolTipTemplate" TargetType="{x:Type controls:HEToolTip}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Border x:Name="BackBorder" MinWidth="60" MinHeight="30" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+                <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+            <Path Grid.Column="1" Width="10" Height="10" Data="{DynamicResource LeftDeltaPath}" Fill="{TemplateBinding Background}" Stretch="Fill" Stroke="{TemplateBinding BorderBrush}" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="RightToolTipTemplate" TargetType="{x:Type controls:HEToolTip}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border x:Name="BackBorder" Grid.Column="1" MinWidth="60" MinHeight="30" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+                <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+            <Path Grid.Column="0" Width="10" Height="10" Data="{DynamicResource RightDeltaPath}" Fill="{TemplateBinding Background}" Stretch="Fill" Stroke="{TemplateBinding BorderBrush}" />
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>

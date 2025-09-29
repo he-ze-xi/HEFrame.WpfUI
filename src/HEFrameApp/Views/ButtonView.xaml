@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="HEFrameApp.Views.ButtonView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:HEFrameApp.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ui="clr-namespace:HEFrame.Styles.Controls;assembly=HEFrame.Styles" d:DesignHeight="450" d:DesignWidth="800" mc:Ignorable="d">
+    <Grid Background="{StaticResource LightForeground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="79*" />
+        </Grid.RowDefinitions>
+        <TextBlock Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="Buttons" />
+        <WrapPanel Grid.Row="1" Margin="10">
+            <ui:HEButton Margin="5,0" ButtonType="Dark" Content="Dark" />
+            <ui:HEButton Margin="5,0" ButtonType="Light" Content="Light" />
+            <ui:HEButton Margin="5,0" ButtonType="Primary" Content="Primary" />
+            <ui:HEButton Margin="5,0" ButtonType="Success" Content="Success" />
+            <ui:HEButton Margin="5,0" ButtonType="Caution" Content="Caution" />
+            <ui:HEButton Margin="5,0" ButtonType="Dranger" Content="Dranger" />
+            <ui:HEButton Margin="5,0" Background="Black" BorderBrush="{DynamicResource PrimaryBackground}" BorderThickness="1" ButtonType="Custom" Content="Custom" Foreground="White" HoverBackground="{DynamicResource PrimaryMouseHover}" />
+
+        </WrapPanel>
+        <TextBlock Grid.Row="2" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="Desiable Buttons" />
+        <WrapPanel Grid.Row="3" Margin="10">
+            <ui:HEButton Margin="5" ButtonType="Dark" Content="Disable" IsEnabled="False" />
+            <ui:HEButton Margin="5" ButtonType="Light" Content="Disable" IsEnabled="False" />
+            <ui:HEButton Margin="5" ButtonType="Primary" Content="Disable" IsEnabled="False" />
+            <ui:HEButton Margin="5" ButtonType="Success" Content="Disable" IsEnabled="False" />
+            <ui:HEButton Margin="5" ButtonType="Caution" Content="Disable" IsEnabled="False" />
+            <ui:HEButton Margin="5" ButtonType="Dranger" Content="Disable" IsEnabled="False" />
+            <ui:HEButton Margin="5,0" Background="Black" BorderBrush="{DynamicResource PrimaryBackground}" BorderThickness="1" ButtonType="Custom" Content="Custom" Foreground="White" HoverBackground="{DynamicResource PrimaryMouseHover}" IsEnabled="False" />
+        </WrapPanel>
+        <TextBlock Grid.Row="4" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="Loading Buttons" />
+        <WrapPanel Grid.Row="5" Margin="10">
+            <ui:HEButton Margin="5,0" ButtonType="Primary" Command="{Binding BeginLoadCommand}" Content="加载按钮" IsLoading="{Binding IsLoading}" LoadingContent="加载中" />
+        </WrapPanel>
+    </Grid>
+
+</UserControl>
