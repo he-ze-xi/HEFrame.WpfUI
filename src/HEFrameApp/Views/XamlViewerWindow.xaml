@@ -124,51 +124,76 @@
             </Grid.RowDefinitions>
 
             <Border Grid.Row="0"
-             Background="{StaticResource LightBackgroundBrush}"
-             BorderBrush="{StaticResource BorderBrush}"
-             BorderThickness="0,0,0,1"
-             Height="35"
-             CornerRadius="3,3,0,0">
+                    Background="{StaticResource LightBackgroundBrush}"
+                    BorderBrush="{StaticResource BorderBrush}"
+                    BorderThickness="0,0,0,1"
+                    Height="35"
+                    CornerRadius="3,3,0,0">
                 <Grid>
                     <TextBlock Text="XAML Code"
-                       Foreground="{StaticResource TextBrush}"
-                       FontSize="13"
-                       FontWeight="SemiBold"
-                       VerticalAlignment="Center"
-                       Margin="15,0"/>
+                               Foreground="{StaticResource TextBrush}"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="15,0"/>
 
-                    <StackPanel Orientation="Horizontal" 
-                         HorizontalAlignment="Right"
-                         Margin="0,0,10,0">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,10,0">
 
-                        <Button x:Name="BtnCopy" 
-                         Content="Copy"
-                         Style="{StaticResource PrimaryButtonStyle}"
-                         Height="25"
-                         MinWidth="80"
-                         Margin="8,0,0,0"
-                         Click="BtnCopy_Click"/>
+                        <Button x:Name="BtnCopy"
+                                Content="Copy"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Height="25"
+                                MinWidth="80"
+                                Margin="8,0,0,0"
+                                Click="BtnCopy_Click"/>
                     </StackPanel>
                 </Grid>
             </Border>
 
-            <ScrollViewer Grid.Row="1"
-                   VerticalScrollBarVisibility="Auto"
-                   HorizontalScrollBarVisibility="Auto"
-                   Padding="0">
-                <avalon:TextEditor x:Name="Editor"
-                    Grid.Row="1"
-                    FontFamily="Consolas"
-                    FontSize="13"
-                    ShowLineNumbers="True"
-                    IsReadOnly="True"
-                    SyntaxHighlighting="XML"
-                    HorizontalScrollBarVisibility="Auto"
-                    VerticalScrollBarVisibility="Auto"
-                    Padding="8"
-                    Background="{StaticResource WhiteBrush}"
-                    Foreground="{StaticResource TextBrush}"/>
-            </ScrollViewer>
+            <!-- 使用 TabControl 承载三个 AvalonEdit 编辑器 -->
+            <TabControl Grid.Row="1" Margin="0">
+                <TabItem Header="XAML">
+                    <avalon:TextEditor x:Name="EditorXaml"
+                                       FontFamily="Consolas"
+                                       FontSize="13"
+                                       ShowLineNumbers="True"
+                                       IsReadOnly="True"
+                                       SyntaxHighlighting="XML"
+                                       HorizontalScrollBarVisibility="Auto"
+                                       VerticalScrollBarVisibility="Auto"
+                                       Padding="8"
+                                       Background="{StaticResource WhiteBrush}"
+                                       Foreground="{StaticResource TextBrush}"/>
+                </TabItem>
+                <TabItem Header="Code-behind (.cs)">
+                    <avalon:TextEditor x:Name="EditorCode"
+                                       FontFamily="Consolas"
+                                       FontSize="13"
+                                       ShowLineNumbers="True"
+                                       IsReadOnly="True"
+                                       SyntaxHighlighting="C#"
+                                       HorizontalScrollBarVisibility="Auto"
+                                       VerticalScrollBarVisibility="Auto"
+                                       Padding="8"
+                                       Background="{StaticResource WhiteBrush}"
+                                       Foreground="{StaticResource TextBrush}"/>
+                </TabItem>
+                <TabItem Header="ViewModel (.cs)">
+                    <avalon:TextEditor x:Name="EditorViewModel"
+                                       FontFamily="Consolas"
+                                       FontSize="13"
+                                       ShowLineNumbers="True"
+                                       IsReadOnly="True"
+                                       SyntaxHighlighting="C#"
+                                       HorizontalScrollBarVisibility="Auto"
+                                       VerticalScrollBarVisibility="Auto"
+                                       Padding="8"
+                                       Background="{StaticResource WhiteBrush}"
+                                       Foreground="{StaticResource TextBrush}"/>
+                </TabItem>
+            </TabControl>
         </Grid>
 
         <Border Grid.Row="1"
@@ -177,11 +202,10 @@
                 BorderThickness="0,1,0,0"
                 Height="40">
             <Grid>
-
-                <StackPanel Orientation="Horizontal" 
-                           HorizontalAlignment="Right"
-                           Margin="0,0,15,0">
-                    <Button x:Name="BtnClose" 
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,15,0">
+                    <Button x:Name="BtnClose"
                             Content="关闭"
                             Style="{StaticResource PrimaryButtonStyle}"
                             Height="30"

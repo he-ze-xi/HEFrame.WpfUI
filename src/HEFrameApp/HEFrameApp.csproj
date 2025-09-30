@@ -362,5 +362,11 @@
   <ItemGroup>
     <Folder Include="Controls\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="XamlSamples\ButtonView.xaml.cs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="XamlSamples\ButtonViewModel.cs.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
