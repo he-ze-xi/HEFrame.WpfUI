@@ -152,7 +152,6 @@
                 </Grid>
             </Border>
 
-            <!-- 使用 TabControl 承载三个 AvalonEdit 编辑器 -->
             <TabControl Grid.Row="1" Margin="0">
                 <TabItem Header="XAML">
                     <avalon:TextEditor x:Name="EditorXaml"

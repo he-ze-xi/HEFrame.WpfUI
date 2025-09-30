@@ -23,7 +23,7 @@ namespace HEFrameApp.Views
         }
 
         /// <summary>
-        /// 显示 XAML、Code-behind 和 ViewModel。优先使用传入路径，否则尝试序列化 element 并从磁盘搜索 ViewModel。
+        /// 
         /// </summary>
         public static void ShowXamlAndCode(System.Windows.FrameworkElement element,
                                           string xamlSamplePath = null,
@@ -98,7 +98,7 @@ namespace HEFrameApp.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"复制到剪贴板失败: {ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+               
             }
         }
 
