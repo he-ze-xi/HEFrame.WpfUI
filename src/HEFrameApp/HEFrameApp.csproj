@@ -160,6 +160,9 @@
     <Compile Include="Views\TransitionAnimationView.xaml.cs">
       <DependentUpon>TransitionAnimationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\XamlViewerWindow.xaml.cs">
+      <DependentUpon>XamlViewerWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -235,6 +238,10 @@
     <Page Include="Views\TransitionAnimationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\XamlViewerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -344,6 +351,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="XamlSamples\ButtonView.xaml.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
