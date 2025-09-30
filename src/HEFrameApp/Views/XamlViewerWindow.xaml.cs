@@ -4,8 +4,8 @@ using System.Text;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Xml;
+using ICSharpCode.AvalonEdit.Highlighting;
 
 namespace HEFrameApp.Views
 {
@@ -15,29 +15,18 @@ namespace HEFrameApp.Views
         {
             InitializeComponent();
             Loaded += OnLoaded;
-
-            // 设置窗口图标（如果存在）
-            try
-            {
-                // 尝试设置图标，如果资源不存在会跳过
-                // this.Icon = ... 已经在XAML中设置
-            }
-            catch
-            {
-                // 忽略图标加载错误
-            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            // 设置焦点到关闭按钮，避免文本框获得焦点
+            // 设置焦点到关闭按钮，避免编辑器获得焦点
             BtnClose.Focus();
         }
 
         /// <summary>
         /// 打开并显示控件对应的 XAML。优先读取磁盘样例文件（relativePath 相对于可执行文件目录），否则回退到序列化 element。
         /// </summary>
-        public static void ShowXamlForControl(FrameworkElement element, string sampleFileRelativePath = null, Window owner = null)
+        public static void ShowXamlForControl(System.Windows.FrameworkElement element, string sampleFileRelativePath = null, Window owner = null)
         {
             string xaml = TryLoadSampleFile(sampleFileRelativePath) ?? TrySerialize(element) ?? "<!-- 无法获取 XAML -->";
             var win = new XamlViewerWindow();
@@ -47,7 +36,11 @@ namespace HEFrameApp.Views
                 win.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             }
 
-            win.TxtXaml.Text = FormatXaml(xaml);
+            // 格式化并设置到 AvalonEdit 编辑器
+            win.Editor.Text = FormatXaml(xaml);
+            // 明确设置语法高亮为 XML（XAML）
+            win.Editor.SyntaxHighlighting = HighlightingManager.Instance.GetDefinition("XML");
+            win.Editor.IsReadOnly = true;
             win.ShowDialog();
         }
 
@@ -67,7 +60,7 @@ namespace HEFrameApp.Views
             }
         }
 
-        private static string TrySerialize(FrameworkElement element)
+        private static string TrySerialize(System.Windows.FrameworkElement element)
         {
             if (element == null) return null;
             try
@@ -103,20 +96,11 @@ namespace HEFrameApp.Views
                       .Replace(" />", "/>");
         }
 
-        private static string GetXamlLengthInfo(string xaml)
-        {
-            if (string.IsNullOrEmpty(xaml)) return "0 字符";
-
-            var lines = xaml.Split('\n').Length;
-            var chars = xaml.Length;
-            return $"{lines} 行, {chars} 字符";
-        }
-
         private void BtnCopy_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Clipboard.SetText(TxtXaml.Text);
+                Clipboard.SetText(Editor.Text);
             }
             catch (Exception ex)
             {

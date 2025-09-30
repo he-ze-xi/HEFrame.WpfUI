@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Width="900"
         Height="650"
+        xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize"
         Background="#FFF0F0F0">
@@ -155,10 +156,18 @@
                    VerticalScrollBarVisibility="Auto"
                    HorizontalScrollBarVisibility="Auto"
                    Padding="0">
-                <TextBox x:Name="TxtXaml"
-                  Style="{StaticResource CodeTextBoxStyle}"
-                  BorderThickness="0"
-                  TextWrapping="NoWrap"/>
+                <avalon:TextEditor x:Name="Editor"
+                    Grid.Row="1"
+                    FontFamily="Consolas"
+                    FontSize="13"
+                    ShowLineNumbers="True"
+                    IsReadOnly="True"
+                    SyntaxHighlighting="XML"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto"
+                    Padding="8"
+                    Background="{StaticResource WhiteBrush}"
+                    Foreground="{StaticResource TextBrush}"/>
             </ScrollViewer>
         </Grid>
 
