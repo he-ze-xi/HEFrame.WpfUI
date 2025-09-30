@@ -130,7 +130,7 @@
                     Height="35"
                     CornerRadius="3,3,0,0">
                 <Grid>
-                    <TextBlock Text="XAML Code"
+                    <TextBlock Text="Code"
                                Foreground="{StaticResource TextBrush}"
                                FontSize="13"
                                FontWeight="SemiBold"
