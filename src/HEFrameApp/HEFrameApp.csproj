@@ -99,6 +99,7 @@
     <Compile Include="Common\Converters\BoolToVisiableConverter.cs" />
     <Compile Include="Common\DataGridComboBoxSource.cs" />
     <Compile Include="Common\SysStringsManager.cs" />
+    <Compile Include="Views\HEContainerBorder.cs" />
     <Compile Include="Models\MenuBar.cs" />
     <Compile Include="Models\PersonalInfo.cs" />
     <Compile Include="ViewModels\ButtonViewModel.cs" />
@@ -130,9 +131,6 @@
     </Compile>
     <Compile Include="Views\DateView.xaml.cs">
       <DependentUpon>DateView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HEContaioner.xaml.cs">
-      <DependentUpon>HEContaioner.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InputView.xaml.cs">
       <DependentUpon>InputView.xaml</DependentUpon>
@@ -182,6 +180,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\BlankView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,10 +203,6 @@
     <Page Include="Views\DateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\HEContaioner.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\InputView.xaml">
       <SubType>Designer</SubType>
@@ -363,8 +361,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

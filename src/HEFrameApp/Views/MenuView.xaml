@@ -3,7 +3,7 @@
         <cv:BoolToColorConverter x:Key="BoolToColorConverter" />
         <cv:BoolToTextConverter x:Key="BoolToTextConverter" />
     </UserControl.Resources>
-    <local:HEContaioner>
+    <local:HEContainerBorder>
         <ui:HEScrollViewer>
             <Grid>
                 <Grid.RowDefinitions>
@@ -208,5 +208,5 @@
 
             </Grid>
         </ui:HEScrollViewer>
-    </local:HEContaioner>
+    </local:HEContainerBorder>
 </UserControl>
