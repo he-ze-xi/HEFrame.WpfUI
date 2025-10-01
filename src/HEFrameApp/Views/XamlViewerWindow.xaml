@@ -1,55 +1,45 @@
-﻿<Window x:Class="HEFrameApp.Views.XamlViewerWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Width="900"
-        Height="650"
-        xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
-        WindowStartupLocation="CenterOwner"
-        ResizeMode="CanResize"
-        Background="#FFF0F0F0">
+﻿<Window x:Class="HEFrameApp.Views.XamlViewerWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit" Width="900" Height="650" Background="#FFF0F0F0" ResizeMode="CanResize" WindowStartupLocation="CenterOwner">
 
     <Window.Resources>
-        <!-- 颜色定义 -->
+        <!--  颜色定义  -->
         <Color x:Key="PrimaryColor">#FF007ACC</Color>
         <Color x:Key="DarkBackgroundColor">#FF2D2D30</Color>
         <Color x:Key="MediumBackgroundColor">#FF3E3E42</Color>
         <Color x:Key="LightBackgroundColor">#FFEEEEF2</Color>
         <Color x:Key="BorderColor">#FFCCCEDB</Color>
 
-        <!-- 画刷定义 -->
-        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
-        <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackgroundColor}"/>
-        <SolidColorBrush x:Key="MediumBackgroundBrush" Color="{StaticResource MediumBackgroundColor}"/>
-        <SolidColorBrush x:Key="LightBackgroundBrush" Color="{StaticResource LightBackgroundColor}"/>
-        <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
-        <SolidColorBrush x:Key="WhiteBrush" Color="White"/>
-        <SolidColorBrush x:Key="TextBrush" Color="#FF1E1E1E"/>
-        <SolidColorBrush x:Key="LightTextBrush" Color="#FF6B6B6B"/>
+        <!--  画刷定义  -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
+        <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackgroundColor}" />
+        <SolidColorBrush x:Key="MediumBackgroundBrush" Color="{StaticResource MediumBackgroundColor}" />
+        <SolidColorBrush x:Key="LightBackgroundBrush" Color="{StaticResource LightBackgroundColor}" />
+        <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
+        <SolidColorBrush x:Key="WhiteBrush" Color="White" />
+        <SolidColorBrush x:Key="TextBrush" Color="#FF1E1E1E" />
+        <SolidColorBrush x:Key="LightTextBrush" Color="#FF6B6B6B" />
 
-        <!-- 按钮样式 -->
+        <!--  按钮样式  -->
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="MinWidth" Value="80"/>
-            <Setter Property="Padding" Value="12,0"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="MinWidth" Value="80" />
+            <Setter Property="Padding" Value="12,0" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="3">
-                            <ContentPresenter HorizontalAlignment="Center" 
-                                              VerticalAlignment="Center"/>
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF1C97EA"/>
+                                <Setter Property="Background" Value="#FF1C97EA" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#FF005A9E"/>
+                                <Setter Property="Background" Value="#FF005A9E" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -57,27 +47,23 @@
             </Setter>
         </Style>
 
-        <Style x:Key="SecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-            <Setter Property="BorderThickness" Value="1"/>
+        <Style x:Key="SecondaryButtonStyle" BasedOn="{StaticResource PrimaryButtonStyle}" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="3">
-                            <ContentPresenter HorizontalAlignment="Center" 
-                                              VerticalAlignment="Center"/>
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#E0E0E0"/>
+                                <Setter Property="Background" Value="#E0E0E0" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#D0D0D0"/>
+                                <Setter Property="Background" Value="#D0D0D0" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -85,132 +71,72 @@
             </Setter>
         </Style>
 
-        <!-- 文本框样式 -->
+        <!--  文本框样式  -->
         <Style x:Key="CodeTextBoxStyle" TargetType="TextBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-            <Setter Property="FontFamily" Value="Consolas, Courier New"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="VerticalContentAlignment" Value="Top"/>
-            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="AcceptsReturn" Value="True"/>
-            <Setter Property="AcceptsTab" Value="True"/>
-            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+            <Setter Property="FontFamily" Value="Consolas, Courier New" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Padding" Value="8" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="AcceptsTab" Value="True" />
+            <Setter Property="IsReadOnly" Value="True" />
         </Style>
 
-        <!-- 标题文本样式 -->
+        <!--  标题文本样式  -->
         <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0"
-                    Background="{StaticResource LightBackgroundBrush}"
-                    BorderBrush="{StaticResource BorderBrush}"
-                    BorderThickness="0,0,0,1"
-                    Height="35"
-                    CornerRadius="3,3,0,0">
+            <Border Grid.Row="0" Height="35" Background="{StaticResource LightBackgroundBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,0,1" CornerRadius="3,3,0,0">
                 <Grid>
-                    <TextBlock Text="Code"
-                               Foreground="{StaticResource TextBrush}"
-                               FontSize="13"
-                               FontWeight="SemiBold"
-                               VerticalAlignment="Center"
-                               Margin="15,0"/>
+                    <TextBlock Margin="15,0" VerticalAlignment="Center" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextBrush}" Text="Code" />
 
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                Margin="0,0,10,0">
+                    <StackPanel Margin="0,0,10,0" HorizontalAlignment="Right" Orientation="Horizontal">
 
-                        <Button x:Name="BtnCopy"
-                                Content="Copy"
-                                Style="{StaticResource PrimaryButtonStyle}"
-                                Height="25"
-                                MinWidth="80"
-                                Margin="8,0,0,0"
-                                Click="BtnCopy_Click"/>
+                        <Button x:Name="BtnCopy" Height="25" MinWidth="80" Margin="8,0,0,0" Click="BtnCopy_Click" Content="Copy" Style="{StaticResource PrimaryButtonStyle}" />
                     </StackPanel>
                 </Grid>
             </Border>
 
             <TabControl Grid.Row="1" Margin="0">
                 <TabItem Header="XAML">
-                    <avalon:TextEditor x:Name="EditorXaml"
-                                       FontFamily="Consolas"
-                                       FontSize="13"
-                                       ShowLineNumbers="True"
-                                       IsReadOnly="True"
-                                       SyntaxHighlighting="XML"
-                                       HorizontalScrollBarVisibility="Auto"
-                                       VerticalScrollBarVisibility="Auto"
-                                       Padding="8"
-                                       Background="{StaticResource WhiteBrush}"
-                                       Foreground="{StaticResource TextBrush}"/>
+                    <avalon:TextEditor x:Name="EditorXaml" Padding="8" Background="{StaticResource WhiteBrush}" FontFamily="Consolas" FontSize="13" Foreground="{StaticResource TextBrush}" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" ShowLineNumbers="True" SyntaxHighlighting="XML" VerticalScrollBarVisibility="Auto" />
                 </TabItem>
                 <TabItem Header="Code-behind (.cs)">
-                    <avalon:TextEditor x:Name="EditorCode"
-                                       FontFamily="Consolas"
-                                       FontSize="13"
-                                       ShowLineNumbers="True"
-                                       IsReadOnly="True"
-                                       SyntaxHighlighting="C#"
-                                       HorizontalScrollBarVisibility="Auto"
-                                       VerticalScrollBarVisibility="Auto"
-                                       Padding="8"
-                                       Background="{StaticResource WhiteBrush}"
-                                       Foreground="{StaticResource TextBrush}"/>
+                    <avalon:TextEditor x:Name="EditorCode" Padding="8" Background="{StaticResource WhiteBrush}" FontFamily="Consolas" FontSize="13" Foreground="{StaticResource TextBrush}" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" ShowLineNumbers="True" SyntaxHighlighting="C#" VerticalScrollBarVisibility="Auto" />
                 </TabItem>
                 <TabItem Header="ViewModel (.cs)">
-                    <avalon:TextEditor x:Name="EditorViewModel"
-                                       FontFamily="Consolas"
-                                       FontSize="13"
-                                       ShowLineNumbers="True"
-                                       IsReadOnly="True"
-                                       SyntaxHighlighting="C#"
-                                       HorizontalScrollBarVisibility="Auto"
-                                       VerticalScrollBarVisibility="Auto"
-                                       Padding="8"
-                                       Background="{StaticResource WhiteBrush}"
-                                       Foreground="{StaticResource TextBrush}"/>
+                    <avalon:TextEditor x:Name="EditorViewModel" Padding="8" Background="{StaticResource WhiteBrush}" FontFamily="Consolas" FontSize="13" Foreground="{StaticResource TextBrush}" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" ShowLineNumbers="True" SyntaxHighlighting="C#" VerticalScrollBarVisibility="Auto" />
                 </TabItem>
             </TabControl>
         </Grid>
 
-        <Border Grid.Row="1"
-                Background="{StaticResource LightBackgroundBrush}"
-                BorderBrush="{StaticResource BorderBrush}"
-                BorderThickness="0,1,0,0"
-                Height="40">
+        <Border Grid.Row="1" Height="40" Background="{StaticResource LightBackgroundBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,1,0,0">
             <Grid>
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Right"
-                            Margin="0,0,15,0">
-                    <Button x:Name="BtnClose"
-                            Content="关闭"
-                            Style="{StaticResource PrimaryButtonStyle}"
-                            Height="30"
-                            MinWidth="80"
-                            Margin="8,0,0,0"
-                            Click="BtnClose_Click"/>
+                <StackPanel Margin="0,0,15,0" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button x:Name="BtnClose" Height="30" MinWidth="80" Margin="8,0,0,0" Click="BtnClose_Click" Content="关闭" Style="{StaticResource PrimaryButtonStyle}" />
                 </StackPanel>
             </Grid>
         </Border>

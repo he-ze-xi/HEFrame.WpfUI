@@ -1,63 +1,65 @@
 ﻿<UserControl x:Class="HEFrameApp.Views.DataTableView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:common="clr-namespace:HEFrameApp.Common" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:HEFrameApp.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" xmlns:ui="clr-namespace:HEFrame.Styles.Controls;assembly=HEFrame.Styles" d:DesignHeight="450" d:DesignWidth="800" mc:Ignorable="d">
+    <local:HEContaioner>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ui:HEButton ThemeType="Light" Margin="10,0" HorizontalAlignment="Left" ButtonType="Primary" Command="{Binding ReLoadCommand}" Content="重置数据" />
+            <ui:HEDataGrid Grid.Row="1" Margin="10" ColumnWidth="*" IsEnabled="True" ItemsSource="{Binding Personals}" LoadingAnimationActive="{Binding IsActive}" ThemeType="Light">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="姓名" />
+                    <DataGridTextColumn Binding="{Binding Age}" Header="年龄" />
+                    <DataGridTemplateColumn Header="性别">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" Text="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ui:HEComboBox Width="95" ItemsSource="{x:Static common:DataGridComboBoxSource.Sexes}" Text="{Binding Sex, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <ui:HEButton ThemeType="Light" Margin="10,0" HorizontalAlignment="Left" ButtonType="Primary" Command="{Binding ReLoadCommand}" Content="重置数据" />
-        <ui:HEDataGrid Grid.Row="1" Margin="10" ColumnWidth="*" IsEnabled="True" ItemsSource="{Binding Personals}" LoadingAnimationActive="{Binding IsActive}" ThemeType="Light">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="姓名" />
-                <DataGridTextColumn Binding="{Binding Age}" Header="年龄" />
-                <DataGridTemplateColumn Header="性别">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock VerticalAlignment="Center" Text="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <ui:HEComboBox Width="95" ItemsSource="{x:Static common:DataGridComboBoxSource.Sexes}" Text="{Binding Sex, UpdateSourceTrigger=PropertyChanged}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
+                    <DataGridHyperlinkColumn Binding="{Binding Address}" ContentBinding="{Binding Address}" Header="地址" />
+                    <DataGridCheckBoxColumn Binding="{Binding IsMember}" Header="是否会员" />
+                    <DataGridTextColumn Binding="{Binding Occupation}" Header="职业" />
+                    <DataGridTextColumn Binding="{Binding PhoneNumber}" Header="联系方式" />
+                    <DataGridTextColumn Binding="{Binding IdNumber}" Header="身份证号" />
+                    <DataGridTextColumn Binding="{Binding Remarks}" Header="备注" />
+                    <DataGridTemplateColumn Header="操作">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <ui:HEButton Width="35" Height="20" Margin="5,0" ButtonType="Success" Content="编辑" Cursor="Hand" />
+                                    <ui:HEButton Grid.Column="1" Width="35" Height="20" Margin="0,0,5,0" ButtonType="Dranger" Command="{Binding RelativeSource={RelativeSource AncestorType=ui:HEDataGrid}, Path=DataContext.DeleteCommand}" CommandParameter="{Binding}" Content="删除" Cursor="Hand" />
+                                </Grid>
 
-                <DataGridHyperlinkColumn Binding="{Binding Address}" ContentBinding="{Binding Address}" Header="地址" />
-                <DataGridCheckBoxColumn Binding="{Binding IsMember}" Header="是否会员" />
-                <DataGridTextColumn Binding="{Binding Occupation}" Header="职业" />
-                <DataGridTextColumn Binding="{Binding PhoneNumber}" Header="联系方式" />
-                <DataGridTextColumn Binding="{Binding IdNumber}" Header="身份证号" />
-                <DataGridTextColumn Binding="{Binding Remarks}" Header="备注" />
-                <DataGridTemplateColumn Header="操作">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <ui:HEButton Width="35" Height="20" Margin="5,0" ButtonType="Success" Content="编辑" Cursor="Hand" />
-                                <ui:HEButton Grid.Column="1" Width="35" Height="20" Margin="0,0,5,0" ButtonType="Dranger" Command="{Binding RelativeSource={RelativeSource AncestorType=ui:HEDataGrid}, Path=DataContext.DeleteCommand}" CommandParameter="{Binding}" Content="删除" Cursor="Hand" />
-                            </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <ui:HEExpander Header="详细信息">
+                            <StackPanel>
+                                <TextBlock Margin="5" Text="{Binding Name, StringFormat=名称：{0}}" />
+                                <TextBlock Margin="5" Text="{Binding Age, StringFormat=年龄：{0}}" />
+                                <TextBlock Margin="5" Text="{Binding Sex, StringFormat=性别：{0}}" />
+                                <TextBlock Margin="5" Text="{Binding Address, StringFormat=地址：{0}}" />
+                                <TextBlock Margin="5" Text="{Binding Occupation, StringFormat=职业：{0}}" />
+                            </StackPanel>
+                        </ui:HEExpander>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </ui:HEDataGrid>
+        </Grid>
+    </local:HEContaioner>
 
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <ui:HEExpander Header="详细信息">
-                        <StackPanel>
-                            <TextBlock Margin="5" Text="{Binding Name, StringFormat=名称：{0}}" />
-                            <TextBlock Margin="5" Text="{Binding Age, StringFormat=年龄：{0}}" />
-                            <TextBlock Margin="5" Text="{Binding Sex, StringFormat=性别：{0}}" />
-                            <TextBlock Margin="5" Text="{Binding Address, StringFormat=地址：{0}}" />
-                            <TextBlock Margin="5" Text="{Binding Occupation, StringFormat=职业：{0}}" />
-                        </StackPanel>
-                    </ui:HEExpander>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-        </ui:HEDataGrid>
-    </Grid>
 </UserControl>

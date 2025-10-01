@@ -1,25 +1,28 @@
 ﻿<UserControl x:Class="HEFrameApp.Views.LoadingAnimationView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:HEFrameApp.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ui="clr-namespace:HEFrame.Styles.Controls;assembly=HEFrame.Styles"   Height="450" d:DesignWidth="800" mc:Ignorable="d">
-    <ui:HEScrollViewer>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="加载动画" />
-            <StackPanel Grid.Row="1" Margin="15,10" Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center" Foreground="{StaticResource DarkForeground}" Text="动画启动" />
-                <ui:HEToggleButton x:Name="AnimationControl" Margin="10,0" ThemeType="Light" />
-            </StackPanel>
-            <WrapPanel Grid.Row="2" Margin="15,10">
-                <ui:HELoadingAnimation Margin="0,0" AnimationType="Default" IsActive="{Binding ElementName=AnimationControl, Path=IsChecked}" LoadingContent="正在加载.." />
-                <ui:HELoadingAnimation Margin="10,0" AnimationType="CircleArrow" IsActive="{Binding ElementName=AnimationControl, Path=IsChecked}" LoadingContent="正在加载.." />
-                <ui:HELoadingAnimation Margin="10,0" AnimationType="CirclePoint" IsActive="{Binding ElementName=AnimationControl, Path=IsChecked}" LoadingContent="正在加载.." />
-                <ui:HELoadingAnimation Margin="10,0" AnimationType="CircleLine" IsActive="{Binding ElementName=AnimationControl, Path=IsChecked}" LoadingContent="正在加载.." />
-                <ui:HELoadingAnimation Margin="10,0" Padding="0,15,0,0" AnimationType="LinePoint" IsActive="{Binding ElementName=AnimationControl, Path=IsChecked}" LoadingContent="正在加载.." />
-            </WrapPanel>
-        </Grid>
-    </ui:HEScrollViewer>
+    <local:HEContaioner>
+        <ui:HEScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="加载动画" />
+                <StackPanel Grid.Row="1" Margin="15,10" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Foreground="{StaticResource DarkForeground}" Text="动画启动" />
+                    <ui:HEToggleButton x:Name="AnimationControl" Margin="10,0" ThemeType="Light" />
+                </StackPanel>
+                <WrapPanel Grid.Row="2" Margin="15,10">
+                    <ui:HELoadingAnimation Margin="0,0" AnimationType="Default" IsActive="{Binding ElementName=AnimationControl, Path=IsChecked}" LoadingContent="正在加载.." />
+                    <ui:HELoadingAnimation Margin="10,0" AnimationType="CircleArrow" IsActive="{Binding ElementName=AnimationControl, Path=IsChecked}" LoadingContent="正在加载.." />
+                    <ui:HELoadingAnimation Margin="10,0" AnimationType="CirclePoint" IsActive="{Binding ElementName=AnimationControl, Path=IsChecked}" LoadingContent="正在加载.." />
+                    <ui:HELoadingAnimation Margin="10,0" AnimationType="CircleLine" IsActive="{Binding ElementName=AnimationControl, Path=IsChecked}" LoadingContent="正在加载.." />
+                    <ui:HELoadingAnimation Margin="10,0" Padding="0,15,0,0" AnimationType="LinePoint" IsActive="{Binding ElementName=AnimationControl, Path=IsChecked}" LoadingContent="正在加载.." />
+                </WrapPanel>
+            </Grid>
+        </ui:HEScrollViewer>
+    </local:HEContaioner>
+  
 
 </UserControl>

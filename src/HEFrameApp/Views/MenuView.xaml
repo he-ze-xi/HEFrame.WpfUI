@@ -3,210 +3,210 @@
         <cv:BoolToColorConverter x:Key="BoolToColorConverter" />
         <cv:BoolToTextConverter x:Key="BoolToTextConverter" />
     </UserControl.Resources>
-
-    <ui:HEScrollViewer>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="菜单" />
-            <ui:HEMenu Grid.Row="1" Margin="15,10" IsEnabled="True" ThemeType="Light">
-                <ui:HEMenuItem Header="_File" ThemeType="Light">
-                    <ui:HEMenuItem Header="_New" ThemeType="Light" />
-                    <ui:HEMenuItem Header="_Open" ThemeType="Light" />
-                    <ui:HEMenuItem Header="_Save" ThemeType="Light" />
-                </ui:HEMenuItem>
-                <ui:HEMenuItem Header="_SaveAs" ThemeType="Light">
-                    <ui:HEMenuItem Header="_PDF" InputGestureText="Ctrl+S" ThemeType="Light" />
-                    <Separator />
-                    <ui:HEMenuItem Header="_Print" InputGestureText="Ctrl+P" ThemeType="Light" />
-                </ui:HEMenuItem>
-                <ui:HEMenuItem Header="_Check" ThemeType="Light">
-                    <ui:HEMenuItem Header="_Show Status" IsCheckable="True" ThemeType="Light" />
-                    <ui:HEMenuItem Header="_Use Net" IsCheckable="True" ThemeType="Light" />
-                </ui:HEMenuItem>
-                <ui:HEMenuItem Header="_About" ThemeType="Light">
-                    <ui:HEMenuItem Header="_Help" ThemeType="Light">
-                        <ui:HEMenuItem Header="_Help2.0" ThemeType="Light" />
+    <local:HEContaioner>
+        <ui:HEScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="菜单" />
+                <ui:HEMenu Grid.Row="1" Margin="15,10" IsEnabled="True" ThemeType="Light">
+                    <ui:HEMenuItem Header="_File" ThemeType="Light">
+                        <ui:HEMenuItem Header="_New" ThemeType="Light" />
+                        <ui:HEMenuItem Header="_Open" ThemeType="Light" />
+                        <ui:HEMenuItem Header="_Save" ThemeType="Light" />
                     </ui:HEMenuItem>
-                    <Separator />
-                    <ui:HEMenuItem Header="_Exit" ThemeType="Light" />
-                </ui:HEMenuItem>
-            </ui:HEMenu>
-            <TextBlock Grid.Row="2" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="工具栏" />
-            <ToolBarTray Grid.Row="3" Margin="10" Background="{DynamicResource LightBackground}">
-                <ui:HEToolBar ThemeType="Light">
-                    <Button Content="New" />
-                    <Button Content="Open" />
-                    <Button Content="Save" />
-                    <Button Content="As Word Document" ToolBar.OverflowMode="Always" />
-                    <Button Content="As PDF" ToolBar.OverflowMode="Always" />
-                    <Button Content="As text file" ToolBar.OverflowMode="Always" />
-                </ui:HEToolBar>
-                <ui:HEToolBar ThemeType="Light">
-                    <Button Content="Cut" />
-                    <Button Content="Copy" />
-                    <Button Content="Paste" />
-                    <ui:HEComboBox Width="80" SelectedIndex="0" ThemeType="Light">
-                        <ComboBoxItem Content="Insert Text" />
-                        <ComboBoxItem Content="Insert Icon" />
-                        <ComboBoxItem Content="Insert File" />
-                    </ui:HEComboBox>
-                </ui:HEToolBar>
-                <ui:HEToolBar ThemeType="Light">
-                    <Button Content="Bold" ToolBar.OverflowMode="Always" />
-                    <Button Content="Italic" ToolBar.OverflowMode="AsNeeded" />
-                    <Button Content="Normal" ToolBar.OverflowMode="Never" />
-                </ui:HEToolBar>
-            </ToolBarTray>
-            <TextBlock Grid.Row="4" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="工具栏" />
-            <ToolBarTray Grid.Row="5" Margin="15,10" Background="{DynamicResource LightBackground}">
-                <ui:HEToolBar ThemeType="Light">
-                    <Button>
-                        <Image Source="/Images/new.png" />
-                        <Button.ToolTip>
-                            <ui:HEToolTip Content="新建" />
-                        </Button.ToolTip>
-                    </Button>
-                    <Button>
-                        <Image Source="/Images/_open.png" />
-                        <Button.ToolTip>
-                            <ui:HEToolTip Content="打开" />
-                        </Button.ToolTip>
-                    </Button>
-                    <Button>
-                        <Image Source="/Images/close.png" />
-                        <Button.ToolTip>
-                            <ui:HEToolTip Content="关闭" />
-                        </Button.ToolTip>
-                    </Button>
-                    <Button>
-                        <Image Source="/Images/save.png" />
-                        <Button.ToolTip>
-                            <ui:HEToolTip Content="保存" />
-                        </Button.ToolTip>
-                    </Button>
-                    <Button>
-                        <Image Source="/Images/saveAs.png" />
-                        <Button.ToolTip>
-                            <ui:HEToolTip Content="另存为" />
-                        </Button.ToolTip>
-                    </Button>
-                </ui:HEToolBar>
-                <ui:HEToolBar ThemeType="Light">
-                    <Button>
-                        <Image Source="/Images/copy.png" />
-                        <Button.ToolTip>
-                            <ui:HEToolTip Content="复制" />
-                        </Button.ToolTip>
-                    </Button>
-                    <Button>
-                        <Image Source="/Images/cut.png" />
-                        <Button.ToolTip>
-                            <ui:HEToolTip Content="剪切" />
-                        </Button.ToolTip>
-                    </Button>
-                    <Button>
-                        <Image Source="/Images/paste.png" />
-                        <Button.ToolTip>
-                            <ui:HEToolTip Content="粘贴" />
-                        </Button.ToolTip>
-                    </Button>
-                </ui:HEToolBar>
-                <ui:HEToolBar ThemeType="Light">
-                    <Button>
-                        <Image Source="/Images/help.png" />
-                        <Button.ToolTip>
-                            <ui:HEToolTip Content="帮助" />
-                        </Button.ToolTip>
-                    </Button>
-                    <Button>
-                        <Image Source="/Images/about.png" />
-                        <Button.ToolTip>
-                            <ui:HEToolTip Content="关于" />
-                        </Button.ToolTip>
-                    </Button>
-                </ui:HEToolBar>
-            </ToolBarTray>
-            <TextBlock Grid.Row="6" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="状态栏" />
-            <ui:HEStatusBar Grid.Row="7" Margin="15,10" ThemeType="Light">
-                <StatusBarItem>
-                    <TextBlock>文件下载</TextBlock>
-                </StatusBarItem>
-                <StatusBarItem>
-                    <ui:HEProgressBar Name="progressBar1" Width="200" Height="10" Maximum="1" />
-                </StatusBarItem>
-                <Separator />
-                <TextBlock Text="{Binding ElementName=progressBar1, Path=Value, StringFormat={}{0:P}}" />
-                <Separator />
-                <Border Width="15" Height="15" Background="{Binding ElementName=downloadButton, Path=IsLoading, Converter={StaticResource BoolToColorConverter}}" BorderBrush="{Binding ElementName=downloadButton, Path=IsLoading, Converter={StaticResource BoolToColorConverter}}" CornerRadius="15" />
-                <TextBlock Margin="2,0" VerticalAlignment="Center" Text="{Binding ElementName=downloadButton, Path=IsLoading, Converter={StaticResource BoolToTextConverter}}" />
-            </ui:HEStatusBar>
-            <ui:HEButton x:Name="downloadButton" Grid.Row="8" Margin="15,10" HorizontalAlignment="Left" Command="{Binding BeginDownloadCommand}" Content="开始下载" IsLoading="{Binding IsDownload}" LoadingContent="正在下载.." ThemeType="Light">
-                <ui:HEButton.Triggers>
-                    <EventTrigger RoutedEvent="Button.Click">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetName="progressBar1" Storyboard.TargetProperty="Value" From="0" To="1" Duration="0:0:5" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </ui:HEButton.Triggers>
-            </ui:HEButton>
-            <TextBlock Grid.Row="9" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="右键菜单" />
-            <ui:HEButton Grid.Row="10" Margin="15,10" HorizontalAlignment="Left" Content="右键菜单" ThemeType="Light">
-                <ui:HEButton.ContextMenu>
-                    <ui:HEContextMenu Name="cm" StaysOpen="true">
-                        <ui:HEMenuItem Header="File" />
-                        <ui:HEMenuItem Header="Save" />
-                        <ui:HEMenuItem Header="SaveAs" />
-                        <ui:HEMenuItem Header="Recent Files">
-                            <ui:HEMenuItem Header="ReadMe.txt" />
-                            <ui:HEMenuItem Header="Schedule.xls" />
+                    <ui:HEMenuItem Header="_SaveAs" ThemeType="Light">
+                        <ui:HEMenuItem Header="_PDF" InputGestureText="Ctrl+S" ThemeType="Light" />
+                        <Separator />
+                        <ui:HEMenuItem Header="_Print" InputGestureText="Ctrl+P" ThemeType="Light" />
+                    </ui:HEMenuItem>
+                    <ui:HEMenuItem Header="_Check" ThemeType="Light">
+                        <ui:HEMenuItem Header="_Show Status" IsCheckable="True" ThemeType="Light" />
+                        <ui:HEMenuItem Header="_Use Net" IsCheckable="True" ThemeType="Light" />
+                    </ui:HEMenuItem>
+                    <ui:HEMenuItem Header="_About" ThemeType="Light">
+                        <ui:HEMenuItem Header="_Help" ThemeType="Light">
+                            <ui:HEMenuItem Header="_Help2.0" ThemeType="Light" />
                         </ui:HEMenuItem>
-                    </ui:HEContextMenu>
-                </ui:HEButton.ContextMenu>
-            </ui:HEButton>
-            <TextBlock Grid.Row="11" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="弹出窗口" />
-            <StackPanel Grid.Row="12" Margin="15,10" Orientation="Horizontal">
-                <ui:HEPopup ThemeType="Light">
-                    <StackPanel>
-                        <ui:HEButton Width="35" ButtonType="Custom" Content="登录" Foreground="White" HoverBackground="{DynamicResource PrimaryBackground}" />
-                        <ui:HEButton Width="35" ButtonType="Custom" Content="注销" Foreground="White" HoverBackground="{DynamicResource DrangerBackground}" />
-                    </StackPanel>
-                </ui:HEPopup>
-                <ui:HEPopup Margin="20,0" ThemeType="Light">
-                    <Grid Margin="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock VerticalAlignment="Center" Text="账号：" />
-                            <ui:HETextBox ThemeType="Light" WaterMark="请输入账号" />
+                        <Separator />
+                        <ui:HEMenuItem Header="_Exit" ThemeType="Light" />
+                    </ui:HEMenuItem>
+                </ui:HEMenu>
+                <TextBlock Grid.Row="2" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="工具栏" />
+                <ToolBarTray Grid.Row="3" Margin="10" Background="{DynamicResource LightBackground}">
+                    <ui:HEToolBar ThemeType="Light">
+                        <Button Content="New" />
+                        <Button Content="Open" />
+                        <Button Content="Save" />
+                        <Button Content="As Word Document" ToolBar.OverflowMode="Always" />
+                        <Button Content="As PDF" ToolBar.OverflowMode="Always" />
+                        <Button Content="As text file" ToolBar.OverflowMode="Always" />
+                    </ui:HEToolBar>
+                    <ui:HEToolBar ThemeType="Light">
+                        <Button Content="Cut" />
+                        <Button Content="Copy" />
+                        <Button Content="Paste" />
+                        <ui:HEComboBox Width="80" SelectedIndex="0" ThemeType="Light">
+                            <ComboBoxItem Content="Insert Text" />
+                            <ComboBoxItem Content="Insert Icon" />
+                            <ComboBoxItem Content="Insert File" />
+                        </ui:HEComboBox>
+                    </ui:HEToolBar>
+                    <ui:HEToolBar ThemeType="Light">
+                        <Button Content="Bold" ToolBar.OverflowMode="Always" />
+                        <Button Content="Italic" ToolBar.OverflowMode="AsNeeded" />
+                        <Button Content="Normal" ToolBar.OverflowMode="Never" />
+                    </ui:HEToolBar>
+                </ToolBarTray>
+                <TextBlock Grid.Row="4" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="工具栏" />
+                <ToolBarTray Grid.Row="5" Margin="15,10" Background="{DynamicResource LightBackground}">
+                    <ui:HEToolBar ThemeType="Light">
+                        <Button>
+                            <Image Source="/Images/new.png" />
+                            <Button.ToolTip>
+                                <ui:HEToolTip Content="新建" />
+                            </Button.ToolTip>
+                        </Button>
+                        <Button>
+                            <Image Source="/Images/_open.png" />
+                            <Button.ToolTip>
+                                <ui:HEToolTip Content="打开" />
+                            </Button.ToolTip>
+                        </Button>
+                        <Button>
+                            <Image Source="/Images/close.png" />
+                            <Button.ToolTip>
+                                <ui:HEToolTip Content="关闭" />
+                            </Button.ToolTip>
+                        </Button>
+                        <Button>
+                            <Image Source="/Images/save.png" />
+                            <Button.ToolTip>
+                                <ui:HEToolTip Content="保存" />
+                            </Button.ToolTip>
+                        </Button>
+                        <Button>
+                            <Image Source="/Images/saveAs.png" />
+                            <Button.ToolTip>
+                                <ui:HEToolTip Content="另存为" />
+                            </Button.ToolTip>
+                        </Button>
+                    </ui:HEToolBar>
+                    <ui:HEToolBar ThemeType="Light">
+                        <Button>
+                            <Image Source="/Images/copy.png" />
+                            <Button.ToolTip>
+                                <ui:HEToolTip Content="复制" />
+                            </Button.ToolTip>
+                        </Button>
+                        <Button>
+                            <Image Source="/Images/cut.png" />
+                            <Button.ToolTip>
+                                <ui:HEToolTip Content="剪切" />
+                            </Button.ToolTip>
+                        </Button>
+                        <Button>
+                            <Image Source="/Images/paste.png" />
+                            <Button.ToolTip>
+                                <ui:HEToolTip Content="粘贴" />
+                            </Button.ToolTip>
+                        </Button>
+                    </ui:HEToolBar>
+                    <ui:HEToolBar ThemeType="Light">
+                        <Button>
+                            <Image Source="/Images/help.png" />
+                            <Button.ToolTip>
+                                <ui:HEToolTip Content="帮助" />
+                            </Button.ToolTip>
+                        </Button>
+                        <Button>
+                            <Image Source="/Images/about.png" />
+                            <Button.ToolTip>
+                                <ui:HEToolTip Content="关于" />
+                            </Button.ToolTip>
+                        </Button>
+                    </ui:HEToolBar>
+                </ToolBarTray>
+                <TextBlock Grid.Row="6" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="状态栏" />
+                <ui:HEStatusBar Grid.Row="7" Margin="15,10" ThemeType="Light">
+                    <StatusBarItem>
+                        <TextBlock>文件下载</TextBlock>
+                    </StatusBarItem>
+                    <StatusBarItem>
+                        <ui:HEProgressBar Name="progressBar1" Width="200" Height="10" Maximum="1" />
+                    </StatusBarItem>
+                    <Separator />
+                    <TextBlock Text="{Binding ElementName=progressBar1, Path=Value, StringFormat={}{0:P}}" />
+                    <Separator />
+                    <Border Width="15" Height="15" Background="{Binding ElementName=downloadButton, Path=IsLoading, Converter={StaticResource BoolToColorConverter}}" BorderBrush="{Binding ElementName=downloadButton, Path=IsLoading, Converter={StaticResource BoolToColorConverter}}" CornerRadius="15" />
+                    <TextBlock Margin="2,0" VerticalAlignment="Center" Text="{Binding ElementName=downloadButton, Path=IsLoading, Converter={StaticResource BoolToTextConverter}}" />
+                </ui:HEStatusBar>
+                <ui:HEButton x:Name="downloadButton" Grid.Row="8" Margin="15,10" HorizontalAlignment="Left" Command="{Binding BeginDownloadCommand}" Content="开始下载" IsLoading="{Binding IsDownload}" LoadingContent="正在下载.." ThemeType="Light">
+                    <ui:HEButton.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="progressBar1" Storyboard.TargetProperty="Value" From="0" To="1" Duration="0:0:5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ui:HEButton.Triggers>
+                </ui:HEButton>
+                <TextBlock Grid.Row="9" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="右键菜单" />
+                <ui:HEButton Grid.Row="10" Margin="15,10" HorizontalAlignment="Left" Content="右键菜单" ThemeType="Light">
+                    <ui:HEButton.ContextMenu>
+                        <ui:HEContextMenu Name="cm" StaysOpen="true">
+                            <ui:HEMenuItem Header="File" />
+                            <ui:HEMenuItem Header="Save" />
+                            <ui:HEMenuItem Header="SaveAs" />
+                            <ui:HEMenuItem Header="Recent Files">
+                                <ui:HEMenuItem Header="ReadMe.txt" />
+                                <ui:HEMenuItem Header="Schedule.xls" />
+                            </ui:HEMenuItem>
+                        </ui:HEContextMenu>
+                    </ui:HEButton.ContextMenu>
+                </ui:HEButton>
+                <TextBlock Grid.Row="11" Margin="15,10" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="弹出窗口" />
+                <StackPanel Grid.Row="12" Margin="15,10" Orientation="Horizontal">
+                    <ui:HEPopup ThemeType="Light">
+                        <StackPanel>
+                            <ui:HEButton Width="35" ButtonType="Custom" Content="登录" Foreground="White" HoverBackground="{DynamicResource PrimaryBackground}" />
+                            <ui:HEButton Width="35" ButtonType="Custom" Content="注销" Foreground="White" HoverBackground="{DynamicResource DrangerBackground}" />
                         </StackPanel>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <TextBlock VerticalAlignment="Center" Text="密码：" />
-                            <ui:HETextBox ThemeType="Light" WaterMark="请输入密码" />
-                        </StackPanel>
-                    </Grid>
-                </ui:HEPopup>
-            </StackPanel>
+                    </ui:HEPopup>
+                    <ui:HEPopup Margin="20,0" ThemeType="Light">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="账号：" />
+                                <ui:HETextBox ThemeType="Light" WaterMark="请输入账号" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="密码：" />
+                                <ui:HETextBox ThemeType="Light" WaterMark="请输入密码" />
+                            </StackPanel>
+                        </Grid>
+                    </ui:HEPopup>
+                </StackPanel>
 
-        </Grid>
-    </ui:HEScrollViewer>
-
+            </Grid>
+        </ui:HEScrollViewer>
+    </local:HEContaioner>
 </UserControl>

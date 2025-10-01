@@ -1,34 +1,36 @@
 ﻿<UserControl x:Class="HEFrameApp.Views.ToolTipView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:HEFrameApp.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ui="clr-namespace:HEFrame.Styles.Controls;assembly=HEFrame.Styles" d:DesignHeight="450" d:DesignWidth="800" mc:Ignorable="d">
-    <ui:HEScrollViewer>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <ui:HEButton Grid.ColumnSpan="2" Margin="0,10" VerticalAlignment="Bottom" Content="向上提示">
-                <ui:HEButton.ToolTip>
-                    <ui:HEToolTip Content="提示消息" ToolTipMode="Top" />
-                </ui:HEButton.ToolTip>
-            </ui:HEButton>
-            <ui:HEButton Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10" VerticalAlignment="Top" Content="向下提示">
-                <ui:HEButton.ToolTip>
-                    <ui:HEToolTip Content="提示消息" ToolTipMode="Bottom" />
-                </ui:HEButton.ToolTip>
-            </ui:HEButton>
-            <ui:HEButton Grid.RowSpan="2" Margin="60,0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="向左提示">
-                <ui:HEButton.ToolTip>
-                    <ui:HEToolTip Content="提示消息" ToolTipMode="Left" />
-                </ui:HEButton.ToolTip>
-            </ui:HEButton>
-            <ui:HEButton Grid.RowSpan="2" Grid.Column="1" Margin="60,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="向右提示">
-                <ui:HEButton.ToolTip>
-                    <ui:HEToolTip Content="提示消息" ToolTipMode="Right" />
-                </ui:HEButton.ToolTip>
-            </ui:HEButton>
-        </Grid>
-    </ui:HEScrollViewer>
+    <local:HEContaioner>
+        <ui:HEScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ui:HEButton Grid.ColumnSpan="2" Margin="0,10" VerticalAlignment="Bottom" Content="向上提示">
+                    <ui:HEButton.ToolTip>
+                        <ui:HEToolTip Content="提示消息" ToolTipMode="Top" />
+                    </ui:HEButton.ToolTip>
+                </ui:HEButton>
+                <ui:HEButton Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10" VerticalAlignment="Top" Content="向下提示">
+                    <ui:HEButton.ToolTip>
+                        <ui:HEToolTip Content="提示消息" ToolTipMode="Bottom" />
+                    </ui:HEButton.ToolTip>
+                </ui:HEButton>
+                <ui:HEButton Grid.RowSpan="2" Margin="60,0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="向左提示">
+                    <ui:HEButton.ToolTip>
+                        <ui:HEToolTip Content="提示消息" ToolTipMode="Left" />
+                    </ui:HEButton.ToolTip>
+                </ui:HEButton>
+                <ui:HEButton Grid.RowSpan="2" Grid.Column="1" Margin="60,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="向右提示">
+                    <ui:HEButton.ToolTip>
+                        <ui:HEToolTip Content="提示消息" ToolTipMode="Right" />
+                    </ui:HEButton.ToolTip>
+                </ui:HEButton>
+            </Grid>
+        </ui:HEScrollViewer>
+    </local:HEContaioner>
 </UserControl>

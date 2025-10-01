@@ -58,10 +58,24 @@ namespace HEFrameApp.Views
             if (string.IsNullOrEmpty(relativePath)) return null;
             try
             {
-                var baseDir = AppDomain.CurrentDomain.BaseDirectory;
-                var full = Path.IsPathRooted(relativePath) ? relativePath : Path.Combine(baseDir, relativePath);
-                if (!File.Exists(full)) return null;
-                return File.ReadAllText(full, Encoding.UTF8);
+                var assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                var assemblyDir = Path.GetDirectoryName(assemblyLocation);
+
+                var projectDir = assemblyDir;
+                while (projectDir != null && !File.Exists(Path.Combine(projectDir, "HEFrameApp.csproj")))
+                {
+                    projectDir = Directory.GetParent(projectDir)?.FullName;
+                }
+
+                if (projectDir == null)
+                {
+                    projectDir = Path.GetFullPath(Path.Combine(assemblyDir, "..", ".."));
+                }
+
+                var fullPath = Path.IsPathRooted(relativePath) ? relativePath : Path.Combine(projectDir, relativePath);
+
+                if (!File.Exists(fullPath)) return null;
+                return File.ReadAllText(fullPath, Encoding.UTF8);
             }
             catch (Exception ex)
             {
