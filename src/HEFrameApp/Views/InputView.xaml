@@ -53,28 +53,6 @@
                     <ui:HECheckBox Content="禁用" IsChecked="False" IsEnabled="False" ThemeType="Light" />
                     <ui:HECheckBox Content="禁用" IsChecked="{x:Null}" IsEnabled="False" IsThreeState="True" ThemeType="Light" />
                 </StackPanel>
-                <TextBlock Grid.Row="19" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="Black" Text="RadioButton" />
-                <StackPanel Grid.Row="20" Margin="15,10" Orientation="Horizontal">
-                    <ui:HERadioButton Content="低级" ThemeType="Light" />
-                    <ui:HERadioButton Content="中级" IsChecked="True" ThemeType="Light" />
-                    <ui:HERadioButton Content="高级" ThemeType="Light" />
-                    <ui:HERadioButton Content="禁用" IsEnabled="False" ThemeType="Light" />
-                </StackPanel>
-                <TextBlock Grid.Row="21" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="Black" Text="ToggleButton" />
-                <StackPanel Grid.Row="22" Margin="15,10" Orientation="Horizontal">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" Foreground="Black" Text="开启" />
-                        <ui:HEToggleButton Margin="10,0" IsChecked="True" ThemeType="Light" />
-                    </StackPanel>
-                    <StackPanel Margin="20,0" Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" Foreground="Black" Text="关闭" />
-                        <ui:HEToggleButton Margin="10,0" IsChecked="False" ThemeType="Light" />
-                    </StackPanel>
-                    <StackPanel Margin="0" Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" Text="禁用" />
-                        <ui:HEToggleButton Margin="10,0" IsEnabled="False" ThemeType="Light" />
-                    </StackPanel>
-                </StackPanel>
             </Grid>
         </ui:HEScrollViewer>
     </local:HEContainerBorder>

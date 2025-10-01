@@ -8,6 +8,10 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="79*" />
             </Grid.RowDefinitions>
             <TextBlock Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource DarkForeground}" Text="Buttons" />
@@ -35,6 +39,28 @@
             <WrapPanel Grid.Row="5" Margin="10">
                 <ui:HEButton Margin="5,0" ButtonType="Primary" Command="{Binding BeginLoadCommand}" Content="加载按钮" IsLoading="{Binding IsLoading}" LoadingContent="加载中" />
             </WrapPanel>
+            <TextBlock Grid.Row="6" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="Black" Text="RadioButton" />
+            <StackPanel Grid.Row="7" Margin="15,10" Orientation="Horizontal">
+                <ui:HERadioButton Content="低级" ThemeType="Light" />
+                <ui:HERadioButton Content="中级" IsChecked="True" ThemeType="Light" />
+                <ui:HERadioButton Content="高级" ThemeType="Light" />
+                <ui:HERadioButton Content="禁用" IsEnabled="False" ThemeType="Light" />
+            </StackPanel>
+            <TextBlock Grid.Row="8" Margin="15,0" VerticalAlignment="Center" FontSize="14" Foreground="Black" Text="ToggleButton" />
+            <StackPanel Grid.Row="9" Margin="15,10" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Foreground="Black" Text="开启" />
+                    <ui:HEToggleButton Margin="10,0" IsChecked="True" ThemeType="Light" />
+                </StackPanel>
+                <StackPanel Margin="20,0" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Foreground="Black" Text="关闭" />
+                    <ui:HEToggleButton Margin="10,0" IsChecked="False" ThemeType="Light" />
+                </StackPanel>
+                <StackPanel Margin="0" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="禁用" />
+                    <ui:HEToggleButton Margin="10,0" IsEnabled="False" ThemeType="Light" />
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </local:HEContainerBorder>
 </UserControl>
