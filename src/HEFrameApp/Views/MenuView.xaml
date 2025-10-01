@@ -146,7 +146,7 @@
                         <TextBlock>文件下载</TextBlock>
                     </StatusBarItem>
                     <StatusBarItem>
-                        <ui:HEProgressBar Name="progressBar1" Width="200" Height="10" Maximum="1" />
+                        <ui:HEProgressBar x:Name="progressBar1" Width="200" Height="10" Maximum="1" />
                     </StatusBarItem>
                     <Separator />
                     <TextBlock Text="{Binding ElementName=progressBar1, Path=Value, StringFormat={}{0:P}}" />
