@@ -1,20 +1,51 @@
-﻿<Window x:Class="HEFrameApp.Views.MainView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:common="clr-namespace:HEFrameApp.Common" xmlns:cv="clr-namespace:HEFrameApp.Common.Converters" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:HEFrameApp.Views" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:messageService="clr-namespace:HEFrame.Styles.Services;assembly=HEFrame.Styles" xmlns:prism="http://prismlibrary.com/" xmlns:ui="clr-namespace:HEFrame.Styles.Controls;assembly=HEFrame.Styles" Title="MainView" Width="1300" Height="760" prism:ViewModelLocator.AutoWireViewModel="True" AllowsTransparency="True" Background="#202020" Foreground="White" WindowStartupLocation="CenterScreen" WindowStyle="None" mc:Ignorable="d">
+﻿<Window x:Class="HEFrameApp.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:HEFrameApp.Common"
+        xmlns:cv="clr-namespace:HEFrameApp.Common.Converters"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:HEFrameApp.Views"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:messageService="clr-namespace:HEFrame.Styles.Services;assembly=HEFrame.Styles"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:ui="clr-namespace:HEFrame.Styles.Controls;assembly=HEFrame.Styles"
+        Title="MainView"
+        Width="1300"
+        Height="760"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        AllowsTransparency="True"
+        Background="#202020"
+        Foreground="White"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        mc:Ignorable="d">
+
     <Window.Resources>
         <cv:BoolToVisiableConverter x:Key="BoolToVisiableConverter" />
     </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition />
         </Grid.RowDefinitions>
+
         <Grid x:Name="header" Background="#202020">
             <ui:HETitleBar ShowCloseBox="True" ShowMaxBox="True" ShowMinBox="True" ShowMoreBox="True" ThemeType="Light">
                 <ui:HETitleBar.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Image Width="25" Height="25" Margin="10,0,0,0" Source="pack://application:,,,/Images/logo.jpg" />
-                        <TextBlock Margin="5,0" VerticalAlignment="Center" FontSize="18" Text="小何的Blog">
+                        <Image Width="25"
+                               Height="25"
+                               Margin="5,0,0,0"
+                               Source="pack://application:,,,/Images/logo.jpg" />
+                        <TextBlock Margin="5,0"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"
+                                   Text="小何的Blog">
                             <TextBlock.Effect>
-                                <DropShadowEffect BlurRadius="0" ShadowDepth="0" Color="#80B9EE" />
+                                <DropShadowEffect BlurRadius="0"
+                                                  ShadowDepth="0"
+                                                  Color="#80B9EE" />
                             </TextBlock.Effect>
                             <TextBlock.Foreground>
                                 <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
@@ -24,16 +55,39 @@
                                 </LinearGradientBrush>
                             </TextBlock.Foreground>
                         </TextBlock>
+
+                        <Button x:Name="GitHubButton"
+          Width="25"
+          Height="25"
+          Margin="10,0,5,0"
+          Background="Transparent"
+          BorderThickness="0"
+          Cursor="Hand"
+          ToolTip="访问 GitHub 项目"
+          Click="GitHubButton_Click">
+                            <Button.Content>
+                                <Image Source="/HEFrameApp;component/Images/github.png" 
+                 Stretch="Uniform" />
+                            </Button.Content>
+                        </Button>
                     </StackPanel>
                 </ui:HETitleBar.Header>
+
                 <ui:HETitleBar.MorePopupContent>
                     <StackPanel>
-                        <ui:HEButton Width="35" ButtonType="Custom" Content="登录" Foreground="White" HoverBackground="{DynamicResource PrimaryBackground}" />
-                        <ui:HEButton Width="35" ButtonType="Custom" Content="注销" Foreground="White" HoverBackground="{DynamicResource DrangerBackground}" />
+                        <ui:HEButton Width="35"
+                                     ButtonType="Custom"
+                                     Content="登录"
+                                     Foreground="White"
+                                     HoverBackground="{DynamicResource PrimaryBackground}" />
+                        <ui:HEButton Width="35"
+                                     ButtonType="Custom"
+                                     Content="注销"
+                                     Foreground="White"
+                                     HoverBackground="{DynamicResource DrangerBackground}" />
                     </StackPanel>
                 </ui:HETitleBar.MorePopupContent>
             </ui:HETitleBar>
-
         </Grid>
 
         <Grid Grid.Row="1">
@@ -41,6 +95,7 @@
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+
             <ItemsControl Background="White" ItemsSource="{Binding MenuBars}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -49,20 +104,38 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <ui:HEExpanderMenu Background="{StaticResource LightForeground}" Header="{Binding MenuHeader}" MenuItems="{Binding MenuItems}" MenuSwitchCommand="{Binding DataContext.PageSwitchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}" ThemeType="Light" />
+                        <ui:HEExpanderMenu Background="{StaticResource LightForeground}"
+                                           Header="{Binding MenuHeader}"
+                                           MenuItems="{Binding MenuItems}"
+                                           MenuSwitchCommand="{Binding DataContext.PageSwitchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+                                           ThemeType="Light" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
             <Grid Grid.Column="1" Background="{StaticResource LightForeground}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <ui:HETabControl Margin="10,10" ItemContainerStyle="{DynamicResource HETabItemDesignStyle}" ItemsSource="{Binding TabItems}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" SelectionChangedCommand="{Binding SwitchPageCommand}" ThemeType="Light" Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=HasItems, Converter={StaticResource BoolToVisiableConverter}}" />
-                <ui:HETransitionAnimation Grid.Row="1" IsStartAnimation="true" TransitionType="{Binding TransitionType}">
+
+                <ui:HETabControl Margin="10,10"
+                                 ItemContainerStyle="{DynamicResource HETabItemDesignStyle}"
+                                 ItemsSource="{Binding TabItems}"
+                                 SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                                 SelectionChangedCommand="{Binding SwitchPageCommand}"
+                                 ThemeType="Light"
+                                 Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=HasItems, Converter={StaticResource BoolToVisiableConverter}}" />
+
+                <ui:HETransitionAnimation Grid.Row="1"
+                                         IsStartAnimation="true"
+                                         TransitionType="{Binding TransitionType}">
                     <ContentControl prism:RegionManager.RegionName="{x:Static common:SysStringsManager.MainRegionName}" />
                 </ui:HETransitionAnimation>
-                <ui:HEMessageCardHost Grid.Row="1" messageService:HEMessageService.Token="{x:Static common:SysStringsManager.GlobalMessageToken}" ShowDirection="FromTop" />
+
+                <ui:HEMessageCardHost Grid.Row="1"
+                                      messageService:HEMessageService.Token="{x:Static common:SysStringsManager.GlobalMessageToken}"
+                                      ShowDirection="FromTop" />
             </Grid>
         </Grid>
     </Grid>
